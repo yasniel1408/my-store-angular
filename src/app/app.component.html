@@ -1,1 +1,8 @@
-<app-img (loaded)="onLoaded()" imgUrl="{{ imgParent }}"></app-img>
+<div class="container-app">
+  <app-img
+    imgUrl="{{ imgParent }}"
+    height="100"
+    objectFit="scale-down"
+  ></app-img>
+  <app-products></app-products>
+</div>

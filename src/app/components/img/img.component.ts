@@ -6,9 +6,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./img.component.scss'],
 })
 export class ImgComponent implements OnInit {
-  @Input() imgUrl = '';
+  height: string = '220';
 
-  @Output() loaded = new EventEmitter();
+  @Input() imgUrl: string = './assets/images/default.png';
+
+  @Input('height')
+  set changeHeight(height: string) {
+    this.height = height;
+    // mas code y verificaciones parar un input especifico
+    console.log('ESTE ES UN CASO EN QUE SE CUSTOMISA UN HEIGHT: ', height);
+  }
+
+  @Input() objectFit: string = 'cover';
+
+  @Output() loaded = new EventEmitter<string>();
 
   constructor() {}
 
@@ -20,6 +31,6 @@ export class ImgComponent implements OnInit {
 
   loadImg() {
     console.log('LOG HIJO, loaded');
-    this.loaded.emit();
+    this.loaded.emit('HOLAAA DESDE EL HIJO AL PADRE');
   }
 }

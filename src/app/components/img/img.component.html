@@ -1,4 +1,11 @@
-<img [src]="imgUrl" (load)="loadImg()" alt="img" *ngIf="imgUrl; else elseImg" />
+<img
+  [src]="imgUrl"
+  (load)="loadImg()"
+  alt="img"
+  *ngIf="imgUrl; else elseImg"
+  [height]="height"
+  [ngStyle]="{ 'object-fit': objectFit }"
+/>
 <ng-template #elseImg>
   <img src="./assets/images/default.png" alt="default" />
 </ng-template>
