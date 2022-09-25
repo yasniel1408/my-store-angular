@@ -1,1 +1,24 @@
-<app-img imgUrl="{{ imgParent }}" height="100" objectFit="scale-down"></app-img>
+<header class="header">
+  <div id="main">
+    <button class="openbtn" (click)="toggleSideBar()">☰</button>
+  </div>
+  <a href="#" class="logo"
+    ><app-img
+      imgUrl="{{ imgParent }}"
+      height="50"
+      objectFit="scale-down"
+    ></app-img
+  ></a>
+  <div
+    id="mySidebar"
+    class="sidebar"
+    [ngClass]="this.showMenu ? 'showMenu' : ''"
+  >
+    <a href="javascript:void(0)" class="closebtn" (click)="toggleSideBar()"
+      >×</a
+    >
+    <a href="#">Home</a>
+    <a class="active" href="#">Catalogo</a>
+    <a href="#">About</a>
+  </div>
+</header>

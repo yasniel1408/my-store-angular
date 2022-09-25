@@ -1,1 +1,14 @@
-<app-product [product]="product" *ngFor="let product of products"></app-product>
+<div class="cart">
+  <h3>Cart</h3>
+  <ul *ngFor="let pc of shoppingCart">
+    <li>{{ pc.name }}</li>
+  </ul>
+  <h1>Total: {{ total }}</h1>
+  <span (click)="removeDataCart()">X</span>
+</div>
+
+<app-product
+  [product]="product"
+  *ngFor="let product of products"
+  (addProduct)="addProductToCart($event)"
+></app-product>

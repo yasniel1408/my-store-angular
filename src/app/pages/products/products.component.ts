@@ -57,6 +57,19 @@ export class ProductsComponent implements OnInit {
     },
   ];
 
+  public shoppingCart: IProduct[] = [];
+  public total = 0;
+
+  addProductToCart(p: IProduct): void {
+    this.shoppingCart.push(p);
+    this.total += p.price;
+  }
+
+  removeDataCart() {
+    this.shoppingCart = [];
+    this.total = 0;
+  }
+
   constructor() {}
 
   ngOnInit(): void {}
