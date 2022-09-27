@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss'],
 })
-export class ImgComponent implements OnInit {
+export class ImgComponent {
   height: string = '220';
 
   @Input() imgUrl: string = './assets/images/default.png';
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('height')
   set changeHeight(height: string) {
     this.height = height;
@@ -22,8 +23,6 @@ export class ImgComponent implements OnInit {
   @Output() loaded = new EventEmitter<string>();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   imgError() {
     this.imgUrl = './assets/images/default.png';

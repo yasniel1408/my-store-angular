@@ -1,14 +1,6 @@
 <!-- <h6 style="margin-left: 10px">{{ today | date: "short" }}</h6>
 <h6 style="margin-left: 10px">{{ date | timeAgo }}</h6> -->
-<div class="cart">
-  <h3>Productos del Carrito:</h3>
-  <ul>
-    <li *ngFor="let pc of cartService.shoppingCart">{{ pc.title }}</li>
-  </ul>
-  <h1>Cantidad: {{ cartService.shoppingCart.length }}</h1>
-  <h1>Total: $ {{ cartService.total }}</h1>
-  <span (click)="cartService.removeDataCart()">Vaciar carrito</span>
-</div>
+<app-cart></app-cart>
 
 <app-product
   [product]="product"

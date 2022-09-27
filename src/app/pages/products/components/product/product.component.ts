@@ -6,7 +6,7 @@ import { IProduct } from 'src/app/models/product.model';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   @Input() product: IProduct = {
     id: 1,
     title: 'Nombre de ejemplo',
@@ -19,8 +19,6 @@ export class ProductComponent implements OnInit {
   @Output() addProduct = new EventEmitter<IProduct>();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   addProductToCart(p: IProduct): void {
     this.addProduct.emit(p);
