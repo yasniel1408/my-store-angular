@@ -1,14 +1,15 @@
 <div class="cart">
-  <h3>Cart</h3>
-  <ul *ngFor="let pc of shoppingCart">
-    <li>{{ pc.name }}</li>
+  <h3>Productos del Carrito:</h3>
+  <ul>
+    <li *ngFor="let pc of cartService.shoppingCart">{{ pc.name }}</li>
   </ul>
-  <h1>Total: {{ total }}</h1>
-  <span (click)="removeDataCart()">X</span>
+  <h1>Cantidad: {{ cartService.shoppingCart.length }}</h1>
+  <h1>Total: $ {{ cartService.total }}</h1>
+  <span (click)="cartService.removeDataCart()">Vaciar carrito</span>
 </div>
 
 <app-product
   [product]="product"
-  *ngFor="let product of products"
-  (addProduct)="addProductToCart($event)"
+  *ngFor="let product of productService.products"
+  (addProduct)="cartService.addProductToCart($event)"
 ></app-product>
