@@ -8,6 +8,10 @@ import { ImgComponent } from './components/img/img.component';
 import { ProductComponent } from './pages/products/components/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
+import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
     ProductComponent,
     ProductsComponent,
     NavbarComponent,
+    CustomCurrencyPipe,
+    ReversePipe,
+    TimeAgoPipe,
+    HighlightDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
