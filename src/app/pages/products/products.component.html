@@ -1,7 +1,8 @@
+<h6 style="margin-left: 10px">{{ today | date: "short" }}</h6>
 <div class="cart">
   <h3>Productos del Carrito:</h3>
   <ul>
-    <li *ngFor="let pc of cartService.shoppingCart">{{ pc.name }}</li>
+    <li *ngFor="let pc of cartService.shoppingCart">{{ pc.title }}</li>
   </ul>
   <h1>Cantidad: {{ cartService.shoppingCart.length }}</h1>
   <h1>Total: $ {{ cartService.total }}</h1>
@@ -10,6 +11,6 @@
 
 <app-product
   [product]="product"
-  *ngFor="let product of productService.products"
+  *ngFor="let product of products"
   (addProduct)="cartService.addProductToCart($event)"
 ></app-product>

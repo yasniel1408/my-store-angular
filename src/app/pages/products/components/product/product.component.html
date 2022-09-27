@@ -1,9 +1,10 @@
 <div class="product-container">
-  <p>{{ product.name }}</p>
+  <p>{{ product.title }}</p>
   <app-img imgUrl="{{ product.image }}"></app-img>
+  
   <div class="info-product">
     <div>
-      <h2>${{ product.price }}</h2>
+      <h2>{{ product.price | currency: "USD" }}</h2>
     </div>
     <button (click)="addProductToCart(product)">Add to Cart</button>
   </div>

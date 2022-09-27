@@ -9,8 +9,10 @@ import { IProduct } from 'src/app/models/product.model';
 export class ProductComponent implements OnInit {
   @Input() product: IProduct = {
     id: 1,
-    name: 'Nombre de ejemplo',
+    title: 'Nombre de ejemplo',
     image: '',
+    description: '',
+    category: '',
     price: 456,
   };
 
