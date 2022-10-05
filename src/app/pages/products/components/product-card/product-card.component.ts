@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProduct } from 'src/app/models/product.model';
 import { ProductStoreService } from 'src/app/pages/products/store/product-store.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -20,15 +21,16 @@ export class ProductCardComponent {
     price: 456,
   };
 
-  @Output() addProduct = new EventEmitter<IProduct>();
-
-  constructor(public productStoreService: ProductStoreService) {}
+  constructor(
+    public productStoreService: ProductStoreService,
+    public cartService: CartService
+  ) {}
 
   addProductToCart(p: IProduct): void {
-    this.addProduct.emit(p);
+    this.cartService.addProductToCart(p);
   }
 
   onSelectedProduct(product: IProduct) {
-    this.productStoreService.selectedProduct(product)
+    this.productStoreService.selectedProduct(product);
   }
 }

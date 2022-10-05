@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { IProduct } from 'src/app/models/product.model';
 
@@ -14,8 +13,7 @@ export class ProductsComponent implements OnInit {
   date = new Date(2021, 1, 21);
 
   constructor(
-    public productService: ProductsService,
-    public cartService: CartService
+    public productService: ProductsService
   ) {}
 
   ngOnInit(): void {

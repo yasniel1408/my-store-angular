@@ -23,6 +23,7 @@ export class CartService {
 
   removeDataCart() {
     this.shoppingCart = [];
+    this.myCart.next(this.shoppingCart);
     this.total = 0;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductStoreService } from 'src/app/pages/products/store/product-store.service';
 import { IProduct } from 'src/app/models/product.model';
+import { CartService } from '../../../../services/cart/cart.service';
 
 @Component({
   selector: 'app-product-detail-modal',
@@ -21,7 +22,10 @@ export class ProductDetailModalComponent implements OnInit {
   };
   public isShowModal: boolean = false;
 
-  constructor(public productStoreService: ProductStoreService) {}
+  constructor(
+    public productStoreService: ProductStoreService,
+    public cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.productStoreService.currentProductSelected$.subscribe(
@@ -32,6 +36,10 @@ export class ProductDetailModalComponent implements OnInit {
         }
       }
     );
+  }
+
+  addProductToCart(): void {
+    this.cartService.addProductToCart(this.product);
   }
 
   hideModal() {
