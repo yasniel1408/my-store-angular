@@ -1,8 +1,9 @@
+import { ICategory } from './category.model';
 export interface IProduct {
   id: number;
   title: string;
-  category: string;
+  category: ICategory;
   description: string;
-  image: string;
+  images: string[];
   price: number;
 }

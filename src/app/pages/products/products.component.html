@@ -2,8 +2,12 @@
 <h6 style="margin-left: 10px">{{ date | timeAgo }}</h6> -->
 <app-cart></app-cart>
 
-<app-product
-  [product]="product"
-  *ngFor="let product of products"
-  (addProduct)="cartService.addProductToCart($event)"
-></app-product>
+<div class="containers-products">
+  <app-product-card
+    [product]="product"
+    *ngFor="let product of products"
+    (addProduct)="cartService.addProductToCart($event)"
+  ></app-product-card>
+</div>
+
+<app-product-detail-modal></app-product-detail-modal>

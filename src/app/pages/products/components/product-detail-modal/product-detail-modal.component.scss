@@ -1,0 +1,23 @@
+.modal-container {
+  position: fixed;
+  z-index: 1;
+  background: rgb(228, 228, 228);
+  border-radius: 15px;
+  width: 400px;
+  height: 80vh;
+  top: 10vh;
+  padding: 15px;
+  max-width: 500px;
+  margin: 0 40px !important;
+  span {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    color: red;
+    cursor: pointer;
+  }
+}
+
+.hidden{
+  visibility: hidden;
+}

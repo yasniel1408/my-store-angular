@@ -1,6 +1,9 @@
-<div class="product-container">
+<div class="product-container" (click)="onSelectedProduct(product)">
   <p>{{ product.title }}</p>
-  <app-img imgUrl="{{ product.image }}"></app-img>
+  <app-img
+    *ngIf="product.images.length > 0"
+    imgUrl="{{ product.images[0] }}"
+  ></app-img>
   <p appHighlight>{{ product.description }}</p>
   <div class="info-product">
     <div>
