@@ -14,8 +14,6 @@ export class ImgComponent {
   @Input('height')
   set changeHeight(height: string) {
     this.height = height;
-    // mas code y verificaciones parar un input especifico
-    console.log('ESTE ES UN CASO EN QUE SE CUSTOMISA UN HEIGHT: ', height);
   }
 
   @Input() objectFit: string = 'cover';
@@ -29,7 +27,6 @@ export class ImgComponent {
   }
 
   loadImg() {
-    console.log('LOG HIJO, loaded');
     this.loaded.emit('HOLAAA DESDE EL HIJO AL PADRE');
   }
 }

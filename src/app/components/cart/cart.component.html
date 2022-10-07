@@ -1,10 +1,10 @@
 <div class="cart">
   <h3>Productos del Carrito:</h3>
   <ul>
-    <li *ngFor="let pc of cartService.shoppingCart">{{ pc.title }}</li>
+    <li *ngFor="let pc of cartProviderService.shoppingCart">{{ pc.title }}</li>
   </ul>
   <!-- <h1>Cantidad: {{ cartService.shoppingCart.length }}</h1> -->
   <h1>Cantidad: {{ cantProductsInCart }}</h1>
-  <h1>Total: $ {{ cartService.total }}</h1>
-  <span (click)="cartService.removeDataCart()">Vaciar carrito</span>
+  <h1>Total: $ {{ cartProviderService.total }}</h1>
+  <span (click)="cartProviderService.removeDataCart()">Vaciar carrito</span>
 </div>

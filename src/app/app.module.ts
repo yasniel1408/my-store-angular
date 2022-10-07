@@ -16,6 +16,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailModalComponent } from './pages/products/components/product-detail-modal/product-detail-modal.component';
 import { LandingComponent } from './pages/landing/landing.component';
 
+import { SwiperModule } from 'swiper/angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     ProductDetailModalComponent,
     LandingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SwiperModule],
   providers: [],
   bootstrap: [AppComponent],
 })

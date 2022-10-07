@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/services/cart/cart.service';
+import { CartProviderService } from 'src/app/providers/cart-provider/cart-provider.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,10 +9,10 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class CartComponent implements OnInit {
   public cantProductsInCart: number = 0;
 
-  constructor(public cartService: CartService) {}
+  constructor(public cartProviderService: CartProviderService) {}
 
   ngOnInit(): void {
-    this.cartService.myCart$.subscribe((products) => {
+    this.cartProviderService.myCart$.subscribe((products) => {
       this.cantProductsInCart = products.length;
     });
   }

@@ -1,11 +1,13 @@
 <div class="modal-container" [ngClass]="isShowModal ? '' : 'hidden'">
   <span (click)="hideModal()">X</span>
   <h1>{{ product.title }}</h1>
-  <app-img
-    *ngIf="product.images.length > 0"
-    imgUrl="{{ product.images[0] }}"
-    height="400"
-  ></app-img>
+
+  <swiper [slidesPerView]="1" [navigation]="true">
+    <ng-template swiperSlide *ngFor="let img of product.images"
+      ><app-img imgUrl="{{ img }}" height="400"></app-img
+    ></ng-template>
+  </swiper>
+
   <p>{{ product.description }}</p>
   <div class="info-product">
     <div>

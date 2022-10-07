@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/services/products/products.service';
-import { IProduct } from 'src/app/models/product.model';
+import { IProductModel } from 'src/app/models/product.model';
+import { GetAllProductsApiService } from 'src/app/services/product-api/get-all-product-api.service';
 
 @Component({
   selector: 'app-products',
@@ -8,16 +8,14 @@ import { IProduct } from 'src/app/models/product.model';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  public products: IProduct[] = [];
+  public products: IProductModel[] = [];
   today = new Date();
   date = new Date(2021, 1, 21);
 
-  constructor(
-    public productService: ProductsService
-  ) {}
+  constructor(public getAllProductsApiService: GetAllProductsApiService) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe((data) => {
+    this.getAllProductsApiService.getAll().subscribe((data) => {
       this.products = data;
     });
   }

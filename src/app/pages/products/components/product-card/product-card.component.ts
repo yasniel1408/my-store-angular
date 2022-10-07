@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from 'src/app/models/product.model';
+import { IProductModel } from 'src/app/models/product.model';
 import { ProductStoreService } from 'src/app/pages/products/store/product-store.service';
-import { CartService } from 'src/app/services/cart/cart.service';
+import { CartProviderService } from 'src/app/providers/cart-provider/cart-provider.service';
 
 @Component({
   selector: 'app-product-card',
@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent {
-  @Input() product: IProduct = {
+  @Input() product: IProductModel = {
     id: 1,
     title: 'Nombre de ejemplo',
     images: [],
@@ -23,14 +23,14 @@ export class ProductCardComponent {
 
   constructor(
     public productStoreService: ProductStoreService,
-    public cartService: CartService
+    public cartProviderService: CartProviderService
   ) {}
 
-  addProductToCart(p: IProduct): void {
-    this.cartService.addProductToCart(p);
+  addProductToCart(p: IProductModel): void {
+    this.cartProviderService.addProductToCart(p);
   }
 
-  onSelectedProduct(product: IProduct) {
-    this.productStoreService.selectedProduct(product);
+  onSelectedProduct(productId: number) {
+    this.productStoreService.selectedProduct(productId);
   }
 }

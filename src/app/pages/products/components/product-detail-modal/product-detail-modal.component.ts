@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductStoreService } from 'src/app/pages/products/store/product-store.service';
-import { IProduct } from 'src/app/models/product.model';
-import { CartService } from '../../../../services/cart/cart.service';
+import { IProductModel } from 'src/app/models/product.model';
+import { CartProviderService } from 'src/app/providers/cart-provider/cart-provider.service';
+import { GetByIdProductsApiService } from 'src/app/services/product-api/get-by-id-product-api.service';
 
 @Component({
   selector: 'app-product-detail-modal',
@@ -9,7 +10,7 @@ import { CartService } from '../../../../services/cart/cart.service';
   styleUrls: ['./product-detail-modal.component.scss'],
 })
 export class ProductDetailModalComponent implements OnInit {
-  public product: IProduct = {
+  public product: IProductModel = {
     id: 0,
     title: 'Nombre de ejemplo',
     images: [],
@@ -24,22 +25,23 @@ export class ProductDetailModalComponent implements OnInit {
 
   constructor(
     public productStoreService: ProductStoreService,
-    public cartService: CartService
+    public cartProviderService: CartProviderService,
+    public getByIdProductsApiService: GetByIdProductsApiService
   ) {}
 
   ngOnInit(): void {
-    this.productStoreService.currentProductSelected$.subscribe(
-      (product: IProduct) => {
-        if (product.id !== 0) {
-          this.product = product;
-          this.isShowModal = true;
-        }
+    this.productStoreService.currentProductSelected$.subscribe((productId: number) => {
+      if (productId !== 0) {
+        this.getByIdProductsApiService.getById(productId).subscribe((data) => {
+          this.product = data;
+        });
+        this.isShowModal = true;
       }
-    );
+    });
   }
 
   addProductToCart(): void {
-    this.cartService.addProductToCart(this.product);
+    this.cartProviderService.addProductToCart(this.product);
   }
 
   hideModal() {
