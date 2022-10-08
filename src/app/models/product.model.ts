@@ -1,5 +1,6 @@
+import { IBaseModel } from './base-model.model';
 import { ICategoryModel } from './category.model';
-export interface IProductModel {
+export interface IProductModel extends IBaseModel {
   id: number;
   title: string;
   category: ICategoryModel;
@@ -8,11 +9,8 @@ export interface IProductModel {
   price: number;
 }
 
-
-export interface ICreateProductModelDTO {
-  title: string;
+export interface ICreateProductModelDTO extends Omit<IProductModel, 'id' | 'category'> {
   categoryId: number;
-  description: string;
-  images: string[];
-  price: number;
 }
+
+export interface IUpdateProductModelDTO extends Partial<ICreateProductModelDTO> {}

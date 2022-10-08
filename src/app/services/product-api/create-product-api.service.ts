@@ -1,18 +1,15 @@
-import { IProductModel } from 'src/app/models/product.model';
-import { ProductsApiBaseService } from './product-api-base.service';
+import { IProductModel, ICreateProductModelDTO } from 'src/app/models/product.model';
 import { Injectable } from '@angular/core';
+import { CreateBaseApiService } from '../common/base/create-base.service';
 import { HttpClient } from '@angular/common/http';
-import { ICreateResource } from '../common/interfaces/create.interface';
+import { BASE_URL } from 'src/app/constants/endpoinds';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CreateProductsApiService extends ProductsApiBaseService implements ICreateResource<IProductModel> {
-  constructor(private httpClient: HttpClient) {
-    super();
-  }
-
-  create(product: IProductModel) {
-    return this.httpClient.post<IProductModel>(`${this.PRODUCT_BASE_URL}`, product);
+export class CreateProductsApiService extends CreateBaseApiService<IProductModel, ICreateProductModelDTO> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+    this.RESOURCE_BASE_URL = `${BASE_URL}/products`;
   }
 }

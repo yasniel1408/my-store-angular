@@ -1,6 +1,17 @@
 <!-- <h6 style="margin-left: 10px">{{ today | date: "short" }}</h6>
 <h6 style="margin-left: 10px">{{ date | timeAgo }}</h6> -->
+
 <app-cart></app-cart>
+
+<button class="add-product" (click)="createNewProduct()">
+  Add new Product
+</button>
+<button class="add-product" (click)="updateProduct(products[0].id)">
+  Edit first Product
+</button>
+<button class="add-product" (click)="deleteProduct(products[0].id)">
+  Delete first Product
+</button>
 
 <div class="containers-products">
   <app-product-card
@@ -10,3 +21,7 @@
 </div>
 
 <app-product-detail-modal></app-product-detail-modal>
+
+<button class="add-product" (click)="loadData(limit, offset)">
+  Load more data
+</button>

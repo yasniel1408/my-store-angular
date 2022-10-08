@@ -1,19 +1,15 @@
 import { IProductModel } from 'src/app/models/product.model';
-import { Observable } from 'rxjs';
-import { ProductsApiBaseService } from './product-api-base.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IGetAllResource } from '../common/interfaces/get-all.interface';
+import { GetAllBaseApiService } from '../common/base/get-all-base.service';
+import { BASE_URL } from 'src/app/constants/endpoinds';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetAllProductsApiService extends ProductsApiBaseService implements IGetAllResource<IProductModel> {
-  constructor(private httpClient: HttpClient) {
-    super();
-  }
-
-  getAll(): Observable<IProductModel[]> {
-    return this.httpClient.get<IProductModel[]>(`${this.PRODUCT_BASE_URL}`);
+export class GetAllProductsApiService extends GetAllBaseApiService<IProductModel> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+    this.RESOURCE_BASE_URL = `${BASE_URL}/products`;
   }
 }

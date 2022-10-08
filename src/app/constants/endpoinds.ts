@@ -1,1 +1,3 @@
-export const BASE_URL: string = "https://young-sands-07814.herokuapp.com/api"
+import { environment } from "src/environments/environment";
+
+export const BASE_URL: string = `${environment.API_URL}/api`

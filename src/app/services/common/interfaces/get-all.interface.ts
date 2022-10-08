@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
 
 export interface IGetAllResource<T> {
-  getAll(): Observable<T[]>;
+  getAll(limit?: number, offset?: number): Observable<T[]>;
 }
