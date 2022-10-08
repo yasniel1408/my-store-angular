@@ -13,6 +13,10 @@
   Delete first Product
 </button>
 
+<div class="loading" *ngIf="isLoading">
+  <h1>Loading...</h1>
+</div>
+
 <div class="containers-products">
   <app-product-card
     [product]="product"

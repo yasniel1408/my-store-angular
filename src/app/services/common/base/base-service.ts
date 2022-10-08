@@ -1,9 +1,13 @@
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { BASE_URL } from 'src/app/constants/endpoinds';
 
 export abstract class IBaseService {
   protected RESOURCE_BASE_URL: string = '';
-  constructor(protected httpClient: HttpClient) {}
+
+  constructor(protected httpClient: HttpClient, resources: string) {
+    this.RESOURCE_BASE_URL = `${BASE_URL}/${resources}`;
+  }
 
   logger() {
     console.log('Products - ApiService');
@@ -11,9 +15,9 @@ export abstract class IBaseService {
   }
 
   handleErrors(error: HttpErrorResponse): Observable<never> {
-    if (error.status == HttpStatusCode.Forbidden) return throwError('No tiene permisos para realizar la solicitud.');
-    if (error.status == HttpStatusCode.NotFound) return throwError('El producto no existe.');
-    if (error.status == HttpStatusCode.InternalServerError) return throwError('Error en el servidor.');
-    return throwError('Un error inesperado ha ocurrido.');
+    if (error.status == HttpStatusCode.Forbidden) return throwError(() => 'No tiene permisos para realizar la solicitud.');
+    if (error.status == HttpStatusCode.NotFound) return throwError(() => 'El producto no existe.');
+    if (error.status == HttpStatusCode.InternalServerError) return throwError(() => 'Error en el servidor.');
+    return throwError(() => 'Un error inesperado ha ocurrido.');
   }
 }

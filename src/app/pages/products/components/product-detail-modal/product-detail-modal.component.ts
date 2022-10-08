@@ -30,13 +30,19 @@ export class ProductDetailModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productStoreService.currentProductSelected$.subscribe((productId: number) => {
-      if (productId !== 0) {
-        this.getByIdProductsApiService.getById(productId).subscribe((data) => {
-          this.product = data;
-        });
-        this.isShowModal = true;
-      }
+    this.productStoreService.currentProductSelected$.subscribe({
+      next: (productId) => {
+        if (productId !== 0) {
+          this.getByIdProductsApiService.getById(productId).subscribe({
+            next: (data) => {
+              this.product = data;
+            },
+            error: (err) => alert(err),
+          });
+          this.isShowModal = true;
+        }
+      },
+      error: (err) => console.log(err),
     });
   }
 

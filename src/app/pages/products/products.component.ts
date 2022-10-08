@@ -15,6 +15,8 @@ export class ProductsComponent implements OnInit {
   today = new Date();
   date = new Date(2021, 1, 21);
 
+  public isLoading: boolean = false;
+
   limit = 6;
   offset = 0;
 
@@ -30,13 +32,21 @@ export class ProductsComponent implements OnInit {
   }
 
   loadData(limit: number, offset: number) {
-    this.getAllProductsApiService.getAll(limit, offset).subscribe((data) => {
-      this.products = this.products.concat(data);
-      this.offset += this.limit;
+    this.isLoading = true;
+    this.getAllProductsApiService.getAll(limit, offset).subscribe({
+      next: (data) => {
+        this.products = this.products.concat(data);
+        this.offset += this.limit;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
     });
   }
 
   createNewProduct() {
+    this.isLoading = true;
     const product: ICreateProductModelDTO = {
       title: 'Nuevo super producto',
       description: 'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
@@ -45,29 +55,49 @@ export class ProductsComponent implements OnInit {
       categoryId: 1,
     };
 
-    this.createProductsApiService.create(product).subscribe((p: IProductModel) => {
-      this.products.unshift(p);
+    this.createProductsApiService.create(product).subscribe({
+      next: (p: IProductModel) => {
+        this.products.unshift(p);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
     });
   }
 
   updateProduct(idProduct: number): void {
+    this.isLoading = true;
     const product: IUpdateProductModelDTO = {
       title: 'Nuevo nombre del producto',
     };
-    this.updateProductsApiService.update(idProduct, product).subscribe((p) => {
-      // Reemplazamos el producto actualizado en el Array de productos
-      const index = this.products.findIndex((product) => product.id === p.id);
-      this.products[index] = p;
+    this.updateProductsApiService.update(idProduct, product).subscribe({
+      next: (p) => {
+        // Reemplazamos el producto actualizado en el Array de productos
+        const index = this.products.findIndex((product) => product.id === p.id);
+        this.products[index] = p;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
     });
   }
 
   deleteProduct(idProduct: number): void {
-    this.deleteProductsApiService.delete(idProduct).subscribe((p) => {
-      if (p) {
-        // Borramos el producto del Array de productos
-        const index = this.products.findIndex((product) => product.id === idProduct);
-        this.products.splice(index, 1);
-      }
+    this.isLoading = true;
+    this.deleteProductsApiService.delete(idProduct).subscribe({
+      next: (p) => {
+        if (p) {
+          // Borramos el producto del Array de productos
+          const index = this.products.findIndex((product) => product.id === idProduct);
+          this.products.splice(index, 1);
+          this.isLoading = false;
+        }
+      },
+      error: (err) => {
+        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
     });
   }
 }

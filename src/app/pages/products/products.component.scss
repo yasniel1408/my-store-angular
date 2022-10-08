@@ -18,3 +18,16 @@
   padding: 15px;
   cursor: pointer;
 }
+
+.loading {
+  width: 100%;
+  text-align: center;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+}
