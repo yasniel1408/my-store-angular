@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class DeleteBaseApiService extends IBaseService implements IDeleteResource {
   delete(id: number): Observable<boolean> {
+    this.logger('Delete', id);
+
     return this.httpClient
       .delete<boolean>(`${this.RESOURCE_BASE_URL}/${id}`)
       .pipe(retry(3))

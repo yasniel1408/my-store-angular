@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class CreateBaseApiService<M extends IBaseModel, D extends IBaseModel> extends IBaseService implements ICreateResource<M> {
   create(resource: D): Observable<M> {
+    this.logger('Create', resource);
+
     return this.httpClient
       .post<M>(this.RESOURCE_BASE_URL, resource)
       .pipe(retry(3))

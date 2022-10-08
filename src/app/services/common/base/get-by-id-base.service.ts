@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class GetByIdBaseApiService<M extends IBaseModel> extends IBaseService implements IGetByIdResource<M> {
   getById(id: number): Observable<M> {
+    this.logger('GetById', id);
+
     return this.httpClient
       .get<M>(`${this.RESOURCE_BASE_URL}/${id}`)
       .pipe(retry(3))

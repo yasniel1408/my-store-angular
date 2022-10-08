@@ -9,8 +9,8 @@ export abstract class IBaseService {
     this.RESOURCE_BASE_URL = `${BASE_URL}/${resources}`;
   }
 
-  logger() {
-    console.log('Products - ApiService');
+  logger(name: string, data: any) {
+    console.log('ApiService: ', name, this.RESOURCE_BASE_URL, data);
     /* Podemos usar un logger para mostrar informació super util en los diferentes ambientes */
   }
 

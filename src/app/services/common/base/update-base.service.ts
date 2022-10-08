@@ -6,6 +6,8 @@ import { IUpdateResource } from '../interfaces/update.interface';
 
 export class UpdateBaseApiService<M extends IBaseModel, D extends IBaseModel> extends IBaseService implements IUpdateResource<M> {
   update(id: number, resource: D): Observable<M> {
+    this.logger(`Update ${id}`, resource);
+
     return this.httpClient
       .put<M>(`${this.RESOURCE_BASE_URL}/${id}`, resource)
       .pipe(retry(3))
