@@ -1,7 +1,7 @@
 import { IUpdateProductModelDTO, IProductModel } from 'src/app/models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UpdateBaseApiService } from '../common/base/update-base.service';
+import { UpdateBaseApiService } from '../common/crud-base-api-service/update-base-api.service';
 
 @Injectable({
   providedIn: 'root',

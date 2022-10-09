@@ -9,15 +9,7 @@
   }
 }
 
-.add-product {
-  margin-left: 20px;
-  background: blue;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 15px;
-  cursor: pointer;
-}
+
 
 .loading {
   width: 100%;
@@ -30,4 +22,11 @@
     font-size: 1.5rem;
     font-weight: 900;
   }
+}
+
+.load-more-button {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }

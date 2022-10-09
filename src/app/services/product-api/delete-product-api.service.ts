@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DeleteBaseApiService } from '../common/base/delete-base.service';
+import { DeleteBaseApiService } from '../common/crud-base-api-service/delete-base-api.service';
 
 @Injectable({
   providedIn: 'root',

@@ -132,3 +132,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.button-default {
+  margin-left: 20px;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+}

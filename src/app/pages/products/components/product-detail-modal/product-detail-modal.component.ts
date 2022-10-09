@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductStoreService } from 'src/app/pages/products/store/product-store.service';
+import { CurrentProductStoreService } from 'src/app/pages/products/store/current-product-store.service';
 import { IProductModel } from 'src/app/models/product.model';
 import { CartProviderService } from 'src/app/providers/cart-provider/cart-provider.service';
-import { GetByIdProductsApiService } from 'src/app/services/product-api/get-by-id-product-api.service';
+import { GetByIdProductsStoreService } from '../../store/get-by-id-products-store.service';
 
 @Component({
   selector: 'app-product-detail-modal',
@@ -24,22 +24,19 @@ export class ProductDetailModalComponent implements OnInit {
   public isShowModal: boolean = false;
 
   constructor(
-    public productStoreService: ProductStoreService,
+    public currentProductStoreService: CurrentProductStoreService,
     public cartProviderService: CartProviderService,
-    public getByIdProductsApiService: GetByIdProductsApiService
+    public getByIdProductsStoreService: GetByIdProductsStoreService
   ) {}
 
   ngOnInit(): void {
-    this.productStoreService.currentProductSelected$.subscribe({
+    this.currentProductStoreService.currentProductSelected$.subscribe({
       next: (productId) => {
         if (productId !== 0) {
-          this.getByIdProductsApiService.getById(productId).subscribe({
-            next: (data) => {
-              this.product = data;
-            },
-            error: (err) => alert(err),
-          });
           this.isShowModal = true;
+          this.getByIdProductsStoreService.getById(productId).add(() => {
+            this.product = this.getByIdProductsStoreService.getResource();
+          });
         }
       },
       error: (err) => console.log(err),

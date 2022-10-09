@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/h
 import { Observable, throwError } from 'rxjs';
 import { BASE_URL } from 'src/app/constants/endpoinds';
 
-export abstract class IBaseService {
+export abstract class CrudBaseApiService {
   protected RESOURCE_BASE_URL: string = '';
 
   constructor(protected httpClient: HttpClient, resources: string) {

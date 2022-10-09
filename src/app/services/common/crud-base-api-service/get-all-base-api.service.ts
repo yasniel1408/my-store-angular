@@ -1,10 +1,10 @@
 import { IBaseModel } from 'src/app/models/base-model.model';
 import { catchError, Observable, retry } from 'rxjs';
-import { IBaseService } from './base-service';
-import { IGetAllResource } from '../interfaces/get-all.interface';
+import { CrudBaseApiService } from './crud-base-api-service';
+import { IGetAllResourceApiService } from '../interfaces/get-all-api-service.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
-export class GetAllBaseApiService<M extends IBaseModel> extends IBaseService implements IGetAllResource<M> {
+export class GetAllBaseApiService<M extends IBaseModel> extends CrudBaseApiService implements IGetAllResourceApiService<M> {
   getAll(limit?: number, offset?: number): Observable<M[]> {
     this.logger('GetAll');
 

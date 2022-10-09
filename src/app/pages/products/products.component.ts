@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IProductModel, ICreateProductModelDTO, IUpdateProductModelDTO } from 'src/app/models/product.model';
-import { GetAllProductsApiService } from 'src/app/services/product-api/get-all-product-api.service';
-import { CreateProductsApiService } from 'src/app/services/product-api/create-product-api.service';
-import { UpdateProductsApiService } from 'src/app/services/product-api/update-product-api.service';
-import { DeleteProductsApiService } from 'src/app/services/product-api/delete-product-api.service';
+import { GetAllProductsStoreService } from './store/get-all-products-store.service';
+import { CreateProductsStoreService } from './store/create-products-store.service';
+import { UpdateProductsStoreService } from './store/update-products-store.service';
+import { DeleteProductsStoreService } from './store/delete-products-store.service';
 
 @Component({
   selector: 'app-products',
@@ -17,38 +17,24 @@ export class ProductsComponent implements OnInit {
 
   public isLoading: boolean = false;
 
-  limit = 6;
-  offset = 0;
-
   constructor(
-    public getAllProductsApiService: GetAllProductsApiService,
-    public createProductsApiService: CreateProductsApiService,
-    public updateProductsApiService: UpdateProductsApiService,
-    public deleteProductsApiService: DeleteProductsApiService
+    public getAllProductsStoreService: GetAllProductsStoreService,
+    public createProductsStoreService: CreateProductsStoreService,
+    public updateProductsStoreService: UpdateProductsStoreService,
+    public deleteProductsStoreService: DeleteProductsStoreService
   ) {}
 
   ngOnInit(): void {
-    this.loadData();
+    this.getAllProducts();
   }
 
-  loadData() {
-    this.isLoading = true;
-    this.getAllProductsApiService.getAll(this.limit, this.offset).subscribe({
-      next: (data) => {
-        this.products = this.products.concat(data);
-        this.offset += this.limit;
-      },
-      error: (err) => {
-        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
+  getAllProducts() {
+    this.getAllProductsStoreService.getAll().add(() => {
+      this.products = this.getAllProductsStoreService.getDataList();
     });
   }
 
   createNewProduct() {
-    this.isLoading = true;
     const product: ICreateProductModelDTO = {
       title: 'Nuevo super producto',
       description: 'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
@@ -57,55 +43,54 @@ export class ProductsComponent implements OnInit {
       categoryId: 1,
     };
 
-    this.createProductsApiService.create(product).subscribe({
-      next: (p: IProductModel) => {
-        this.products.unshift(p);
-      },
-      error: (err) => {
-        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
+    this.createProductsStoreService.create(product).add(() => {
+      this.products.unshift(this.createProductsStoreService.getResource());
     });
   }
 
   updateProduct(idProduct: number): void {
-    this.isLoading = true;
     const product: IUpdateProductModelDTO = {
       title: 'Nuevo nombre del producto',
     };
-    this.updateProductsApiService.update(idProduct, product).subscribe({
-      next: (p) => {
-        // Reemplazamos el producto actualizado en el Array de productos
-        const index = this.products.findIndex((product) => product.id === p.id);
-        this.products[index] = p;
-      },
-      error: (err) => {
-        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
+    this.updateProductsStoreService.update(idProduct, product).add(() => {
+      const product = this.updateProductsStoreService.getResource();
+      // Reemplazamos el producto actualizado en el Array de productos
+      const index = this.products.findIndex((item: IProductModel) => item.id === product.id);
+      this.products[index] = product;
     });
   }
 
   deleteProduct(idProduct: number): void {
-    this.isLoading = true;
-    this.deleteProductsApiService.delete(idProduct).subscribe({
-      next: (p) => {
-        if (p) {
-          // Borramos el producto del Array de productos
-          const index = this.products.findIndex((product) => product.id === idProduct);
-          this.products.splice(index, 1);
-        }
-      },
-      error: (err) => {
-        alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
+    this.deleteProductsStoreService.delete(idProduct).add(() => {
+      if (this.deleteProductsStoreService.getIsDeleted()) {
+        // Borramos el producto del Array de productos
+        const index = this.products.findIndex((product) => product.id === idProduct);
+        this.products.splice(index, 1);
+      }
     });
   }
+
+  // readAndUpdate(): void {
+  //   // Solución callback hell
+  //   this.apiService
+  //     .getProduct(1)
+  //     .pipe(
+  //        switchMap((products) => this.apiService.updateProduct(1, { name: 'Nuevo nombre' }))
+  //        switchMap((products) => this.apiService.updateProduct(1, { name: 'Nuevo nombre' }))
+  //      )
+  //     .subscribe((res) => {
+  //       // Producto actualizado
+  //     });
+  // }
+
+  // readAndUpdate(): void {
+  //   // Agrupando observables en un mismo subscribe
+  //   zip(
+  //    this.apiService.getProduct(1),
+  //    this.apiService.updateProductPATCH(1, { name: 'Nuevo nombre' })
+  //   ).subscribe((res) => {
+  //     const get = res[0];
+  //     const update = res[1];
+  //   });
+  // }
 }

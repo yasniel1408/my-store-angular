@@ -1,10 +1,10 @@
 import { IBaseModel } from 'src/app/models/base-model.model';
 import { catchError, Observable, retry } from 'rxjs';
-import { ICreateResource } from '../interfaces/create.interface';
-import { IBaseService } from './base-service';
+import { ICreateResourceApiService } from '../interfaces/create-api-service.interface';
+import { CrudBaseApiService } from './crud-base-api-service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-export class CreateBaseApiService<M extends IBaseModel, D extends IBaseModel> extends IBaseService implements ICreateResource<M> {
+export class CreateBaseApiService<M extends IBaseModel, D extends IBaseModel> extends CrudBaseApiService implements ICreateResourceApiService<M, D> {
   create(resource: D): Observable<M> {
     this.logger('Create', resource);
 

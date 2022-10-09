@@ -1,10 +1,10 @@
 import { IBaseModel } from 'src/app/models/base-model.model';
 import { catchError, Observable, retry } from 'rxjs';
-import { IBaseService } from './base-service';
+import { CrudBaseApiService } from './crud-base-api-service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IUpdateResource } from '../interfaces/update.interface';
+import { IUpdateResourceApiService } from '../interfaces/update-api-service.interface';
 
-export class UpdateBaseApiService<M extends IBaseModel, D extends IBaseModel> extends IBaseService implements IUpdateResource<M> {
+export class UpdateBaseApiService<M extends IBaseModel, D extends IBaseModel> extends CrudBaseApiService implements IUpdateResourceApiService<M, D> {
   update(id: number, resource: D): Observable<M> {
     this.logger(`Update id:${id}`, resource);
 

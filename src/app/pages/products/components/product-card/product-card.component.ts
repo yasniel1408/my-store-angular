@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IProductModel } from 'src/app/models/product.model';
-import { ProductStoreService } from 'src/app/pages/products/store/product-store.service';
+import { CurrentProductStoreService } from 'src/app/pages/products/store/current-product-store.service';
 import { CartProviderService } from 'src/app/providers/cart-provider/cart-provider.service';
 
 @Component({
@@ -19,18 +19,16 @@ export class ProductCardComponent {
       name: '',
     },
     price: 456,
+    taxes: 456,
   };
 
-  constructor(
-    public productStoreService: ProductStoreService,
-    public cartProviderService: CartProviderService
-  ) {}
+  constructor(public currentProductStoreService: CurrentProductStoreService, public cartProviderService: CartProviderService) {}
 
   addProductToCart(p: IProductModel): void {
     this.cartProviderService.addProductToCart(p);
   }
 
   onSelectedProduct(productId: number) {
-    this.productStoreService.selectedProduct(productId);
+    this.currentProductStoreService.selectedProduct(productId);
   }
 }

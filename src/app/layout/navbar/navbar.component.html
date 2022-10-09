@@ -2,13 +2,20 @@
   <div id="main">
     <button class="openbtn" (click)="toggleSideBar()">☰</button>
   </div>
-  <a href="#" class="logo"
-    ><app-img
-      imgUrl="{{ imgParent }}"
-      height="50"
-      objectFit="scale-down"
-    ></app-img
-  ></a>
+  <div class="elementes-navbar">
+    <a href="#" class="logo"
+      ><app-img
+        imgUrl="{{ imgParent }}"
+        height="30"
+        objectFit="scale-down"
+      ></app-img
+    ></a>
+    <div>
+      <button class="button-default btn">Login</button>
+      <button class="button-default btn">Create User</button>
+    </div>
+  </div>
+
   <div
     id="mySidebar"
     class="sidebar"

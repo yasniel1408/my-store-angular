@@ -3,14 +3,17 @@
 
 <app-cart></app-cart>
 
-<button class="add-product" (click)="createNewProduct()">
+<button class="button-default" (click)="createNewProduct()">
   Add new Product
+  <span *ngIf="this.createProductsStoreService.getLoading()">...</span>
 </button>
-<button class="add-product" (click)="updateProduct(products[0].id)">
+<button class="button-default" (click)="updateProduct(products[0].id)">
   Edit first Product
+  <span *ngIf="this.updateProductsStoreService.getLoading()">...</span>
 </button>
-<button class="add-product" (click)="deleteProduct(products[0].id)">
+<button class="button-default" (click)="deleteProduct(products[0].id)">
   Delete first Product
+  <span *ngIf="this.deleteProductsStoreService.getLoading()">...</span>
 </button>
 
 <div class="loading" *ngIf="isLoading">
@@ -26,6 +29,9 @@
 
 <app-product-detail-modal></app-product-detail-modal>
 
-<button class="add-product" (click)="loadData()">
-  Load more data
-</button>
+<div class="load-more-button">
+  <button (click)="getAllProducts()">
+    Load more data
+    <span *ngIf="this.getAllProductsStoreService.getLoading()">...</span>
+  </button>
+</div>

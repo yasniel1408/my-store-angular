@@ -1,9 +1,9 @@
 import { catchError, Observable, retry } from 'rxjs';
-import { IBaseService } from './base-service';
-import { IDeleteResource } from '../interfaces/delete.interface';
+import { CrudBaseApiService } from './crud-base-api-service';
+import { IDeleteResourceApiService } from '../interfaces/delete-api-service.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
-export class DeleteBaseApiService extends IBaseService implements IDeleteResource {
+export class DeleteBaseApiService extends CrudBaseApiService implements IDeleteResourceApiService {
   delete(id: number): Observable<boolean> {
     this.logger('Delete', id);
 

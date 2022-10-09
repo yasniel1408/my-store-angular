@@ -1,7 +1,7 @@
 import { IProductModel } from 'src/app/models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { GetAllBaseApiService } from '../common/base/get-all-base.service';
+import { GetAllBaseApiService } from '../common/crud-base-api-service/get-all-base-api.service';
 import { Observable, retry, catchError, map } from 'rxjs';
 
 @Injectable({

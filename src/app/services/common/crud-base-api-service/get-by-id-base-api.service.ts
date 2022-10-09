@@ -1,10 +1,10 @@
 import { IBaseModel } from 'src/app/models/base-model.model';
 import { catchError, Observable, retry } from 'rxjs';
-import { IBaseService } from './base-service';
-import { IGetByIdResource } from '../interfaces/get-by-id.interface';
+import { CrudBaseApiService } from './crud-base-api-service';
+import { IGetByIdResourceApiService } from '../interfaces/get-by-id-api-service.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
-export class GetByIdBaseApiService<M extends IBaseModel> extends IBaseService implements IGetByIdResource<M> {
+export class GetByIdBaseApiService<M extends IBaseModel> extends CrudBaseApiService implements IGetByIdResourceApiService<M> {
   getById(id: number): Observable<M> {
     this.logger('GetById', id);
 

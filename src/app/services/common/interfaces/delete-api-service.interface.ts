@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
 
-export interface IDeleteResource {
+export interface IDeleteResourceApiService {
   delete(id: number): Observable<boolean>;
 }

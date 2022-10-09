@@ -94,3 +94,14 @@
 .showMenu {
   width: 300px;
 }
+
+.elementes-navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .btn {
+    height: 50px;
+    position: static;
+    right: 0;
+  }
+}

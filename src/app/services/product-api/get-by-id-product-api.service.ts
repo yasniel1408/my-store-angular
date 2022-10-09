@@ -1,8 +1,7 @@
 import { IProductModel } from 'src/app/models/product.model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { GetByIdBaseApiService } from '../common/base/get-by-id-base.service';
-import { Observable, retry, catchError, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { GetByIdBaseApiService } from '../common/crud-base-api-service/get-by-id-base-api.service';
 
 @Injectable({
   providedIn: 'root',
