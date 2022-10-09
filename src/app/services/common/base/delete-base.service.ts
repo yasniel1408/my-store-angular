@@ -9,7 +9,7 @@ export class DeleteBaseApiService extends IBaseService implements IDeleteResourc
 
     return this.httpClient
       .delete<boolean>(`${this.RESOURCE_BASE_URL}/${id}`)
-      .pipe(retry(3))
+      .pipe(retry(2))
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return this.handleErrors(err);

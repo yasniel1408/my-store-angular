@@ -28,19 +28,21 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadData(this.limit, this.offset);
+    this.loadData();
   }
 
-  loadData(limit: number, offset: number) {
+  loadData() {
     this.isLoading = true;
-    this.getAllProductsApiService.getAll(limit, offset).subscribe({
+    this.getAllProductsApiService.getAll(this.limit, this.offset).subscribe({
       next: (data) => {
         this.products = this.products.concat(data);
         this.offset += this.limit;
-        this.isLoading = false;
       },
       error: (err) => {
         alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
@@ -58,10 +60,12 @@ export class ProductsComponent implements OnInit {
     this.createProductsApiService.create(product).subscribe({
       next: (p: IProductModel) => {
         this.products.unshift(p);
-        this.isLoading = false;
       },
       error: (err) => {
         alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
@@ -76,10 +80,12 @@ export class ProductsComponent implements OnInit {
         // Reemplazamos el producto actualizado en el Array de productos
         const index = this.products.findIndex((product) => product.id === p.id);
         this.products[index] = p;
-        this.isLoading = false;
       },
       error: (err) => {
         alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
@@ -92,11 +98,13 @@ export class ProductsComponent implements OnInit {
           // Borramos el producto del Array de productos
           const index = this.products.findIndex((product) => product.id === idProduct);
           this.products.splice(index, 1);
-          this.isLoading = false;
         }
       },
       error: (err) => {
         alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }

@@ -10,7 +10,7 @@ export class CreateBaseApiService<M extends IBaseModel, D extends IBaseModel> ex
 
     return this.httpClient
       .post<M>(this.RESOURCE_BASE_URL, resource)
-      .pipe(retry(3))
+      .pipe(retry(2))
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return this.handleErrors(err);

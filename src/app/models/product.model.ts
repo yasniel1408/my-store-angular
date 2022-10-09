@@ -7,6 +7,7 @@ export interface IProductModel extends IBaseModel {
   description: string;
   images: string[];
   price: number;
+  taxes?: number;
 }
 
 export interface ICreateProductModelDTO extends Omit<IProductModel, 'id' | 'category'> {

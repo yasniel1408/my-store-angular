@@ -10,7 +10,7 @@ export class GetByIdBaseApiService<M extends IBaseModel> extends IBaseService im
 
     return this.httpClient
       .get<M>(`${this.RESOURCE_BASE_URL}/${id}`)
-      .pipe(retry(3))
+      .pipe(retry(2))
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return this.handleErrors(err);
