@@ -1,0 +1,18 @@
+<!-- <h6 style="margin-left: 10px">{{ today | date: "short" }}</h6>
+<h6 style="margin-left: 10px">{{ date | timeAgo }}</h6> -->
+
+<div class="containers-products">
+  <app-product-card
+    [product]="product"
+    *ngFor="let product of products"
+  ></app-product-card>
+</div>
+
+<app-product-detail-modal></app-product-detail-modal>
+
+<div class="load-more-button">
+  <button (click)="getMoreData()">
+    Load more data
+    <span *ngIf="isLoading">...</span>
+  </button>
+</div>

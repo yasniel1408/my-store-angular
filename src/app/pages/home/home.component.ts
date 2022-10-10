@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { IProductModel, ICreateProductModelDTO, IUpdateProductModelDTO } from 'src/app/models/product.model';
+import { ICreateProductModelDTO, IProductModel, IUpdateProductModelDTO } from 'src/app/models/product.model';
 import { GetAllProductsStoreService } from './store/get-all-products-store.service';
 import { CreateProductsStoreService } from './store/create-products-store.service';
 import { UpdateProductsStoreService } from './store/update-products-store.service';
 import { DeleteProductsStoreService } from './store/delete-products-store.service';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class HomeComponent implements OnInit {
   public products: IProductModel[] = [];
   today = new Date();
   date = new Date(2021, 1, 21);
-
-  public isLoading: boolean = false;
 
   constructor(
     public getAllProductsStoreService: GetAllProductsStoreService,
@@ -29,7 +27,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.getAllProductsStoreService.getAll().add(() => {
+    this.getAllProductsStoreService.getAll(4, 0).add(() => {
       this.products = this.getAllProductsStoreService.getDataList();
     });
   }

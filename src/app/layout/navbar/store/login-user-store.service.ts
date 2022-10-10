@@ -11,7 +11,7 @@ import { TokenProviderService } from 'src/app/providers/token-provider/token-pro
 export class LoginUserStoreService extends CrudBaseStoreService<LoginApiService> {
   private TOKEN: IUserAccessToken = { access_token: '' };
 
-  constructor(loginApiService: LoginApiService, private tokenProviderService: TokenProviderService) {
+  constructor(loginApiService: LoginApiService) {
     super(loginApiService);
   }
 
@@ -20,7 +20,6 @@ export class LoginUserStoreService extends CrudBaseStoreService<LoginApiService>
     return this.baseService.login(auth).subscribe({
       next: (newData: IUserAccessToken) => {
         this.TOKEN = newData;
-        this.tokenProviderService.saveToken(newData.access_token);
       },
       error: (err: Error) => {
         this.isLoading = false;

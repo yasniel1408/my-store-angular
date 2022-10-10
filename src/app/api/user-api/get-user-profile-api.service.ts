@@ -17,16 +17,16 @@ export class GetUserProfileApiService extends CrudBaseApiService {
 
     const token = localStorage.getItem('access_token');
 
-    // De esta manera es mas recomendable en angular
+    // De esta manera es mas recomendable en angular, pero ya aqui no lo hacemos porque tenemos un interceptor para eso
     //  const headers = new HttpHeaders({
     //    Authorization: 'Bearer ' + token,
     //  });
 
     return this.httpClient
       .get<IUserModel>(`${this.RESOURCE_BASE_URL}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
       })
       .pipe(
         catchError((err: HttpErrorResponse) => {

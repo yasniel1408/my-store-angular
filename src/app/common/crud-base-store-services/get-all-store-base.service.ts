@@ -9,7 +9,9 @@ export abstract class GetAllStoreBaseService<M extends IBaseModel, S extends Get
 
   protected dataList: M[] = [];
 
-  getAll() {
+  getAll(limit: number, offset: number) {
+    this.limit = limit;
+    this.offset = offset;
     this.isLoading = true;
     return this.baseService.getAll(this.limit, this.offset).subscribe({
       next: (data: M[]) => {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentProductStoreService } from 'src/app/pages/products/store/current-product-store.service';
+import { CurrentProductStoreService } from 'src/app/pages/home/store/current-product-store.service';
 import { IProductModel } from 'src/app/models/product.model';
 import { CartProviderService } from 'src/app/providers/cart-provider/cart-provider.service';
-import { GetByIdProductsStoreService } from '../../store/get-by-id-products-store.service';
+import { GetByIdProductsStoreService } from '../../../../pages/home/store/get-by-id-products-store.service';
 
 @Component({
   selector: 'app-product-detail-modal',

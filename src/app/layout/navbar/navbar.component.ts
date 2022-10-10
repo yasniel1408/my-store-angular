@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUserStoreService } from '../store/login-user-store.service';
+import { LoginUserStoreService } from './store/login-user-store.service';
 import { IUserCredentials, IUserModel, ICreateUserModelDTO } from '../../models/user.model';
-import { CreateUserStoreService } from '../store/create-user-store.service';
-import { GetUserProfileStoreService } from '../store/get-user-profile-store.service';
-import { LogoutUserStoreService } from '../store/logout-user-store.service';
-import { TokenProviderService } from '../../providers/token-provider/token-provider.service';
+import { CreateUserStoreService } from './store/create-user-store.service';
+import { GetUserProfileStoreService } from './store/get-user-profile-store.service';
+import { LogoutUserStoreService } from './store/logout-user-store.service';
+import { TokenProviderService } from 'src/app/providers/token-provider/token-provider.service';
+import { GetAllCategoriesStoreService } from './store/get-all-categories-store.service';
+import { ICategoryModel } from '../../models/category.model';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +19,8 @@ export class NavbarComponent implements OnInit {
 
   public showMenu = false;
 
+  public categories: ICategoryModel[] = [];
+
   public user: IUserModel = { id: 0, email: '', password: '', name: '' };
 
   toggleSideBar(): void {
@@ -28,11 +32,15 @@ export class NavbarComponent implements OnInit {
     public createUserStoreService: CreateUserStoreService,
     public getUserProfileStoreService: GetUserProfileStoreService,
     public logoutUserStoreService: LogoutUserStoreService,
-    public tokenProviderService: TokenProviderService
+    public tokenProviderService: TokenProviderService,
+    public getAllCategoriesStoreService: GetAllCategoriesStoreService
   ) {}
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.getAllCategoriesStoreService.getAll(100, 0).add(() => {
+      this.categories = this.getAllCategoriesStoreService.getDataList();
+    });
   }
 
   login() {
