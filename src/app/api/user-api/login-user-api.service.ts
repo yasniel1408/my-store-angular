@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CrudBaseApiService } from '../common/crud-base-api-service/crud-base-api-service';
+import { IUserAccessToken } from 'src/app/models/user.model';
 import { catchError } from 'rxjs';
-import { IUserModel, IUserAccessToken } from '../../models/user.model';
+import { IUserCredentials } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetUserProfilesApiService extends CrudBaseApiService {
+export class LoginApiService extends CrudBaseApiService {
   constructor(httpClient: HttpClient) {
-    super(httpClient, `profile`);
+    super(httpClient, `auth/login`);
   }
 
-  profile(token: IUserAccessToken) {
-    this.logger('Get Profile');
+  login(auth: IUserCredentials) {
+    this.logger('Login');
 
-    return this.httpClient.get<IUserModel>(`${this.RESOURCE_BASE_URL}`).pipe(
+    return this.httpClient.post<IUserAccessToken>(`${this.RESOURCE_BASE_URL}`, auth).pipe(
       catchError((err: HttpErrorResponse) => {
         return this.handleErrors(err);
       })

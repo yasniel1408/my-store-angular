@@ -16,8 +16,9 @@ export abstract class CrudBaseApiService {
 
   handleErrors(error: HttpErrorResponse): Observable<never> {
     if (error.status == HttpStatusCode.Forbidden) return throwError(() => 'No tiene permisos para realizar la solicitud.');
-    if (error.status == HttpStatusCode.NotFound) return throwError(() => 'El producto no existe.');
+    if (error.status == HttpStatusCode.NotFound) return throwError(() => 'El recurso no existe.');
     if (error.status == HttpStatusCode.InternalServerError) return throwError(() => 'Error en el servidor.');
+    if (error.status == HttpStatusCode.Unauthorized) return throwError(() => 'No esta autorizado.');
     return throwError(() => 'Un error inesperado ha ocurrido.');
   }
 }

@@ -1,5 +1,5 @@
 import { IBaseModel } from 'src/app/models/base-model.model';
-import { GetByIdBaseApiService } from 'src/app/services/common/crud-base-api-service/get-by-id-base-api.service';
+import { GetByIdBaseApiService } from 'src/app/api/common/crud-base-api-service/get-by-id-base-api.service';
 import { CrudBaseStoreService } from './crud-base-store-service';
 import { IGetByIdResourceStoreService } from '../interfaces/get-by-id-store-service.interface';
 
@@ -16,6 +16,7 @@ export abstract class GetByIdStoreBaseService<M extends IBaseModel, S extends Ge
       },
       error: (err: Error) => {
         alert(err); // Aquí se emitirá el alerta con el mensaje que `throwError` devuelva.
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false;

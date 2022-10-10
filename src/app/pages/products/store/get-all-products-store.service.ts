@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProductModel } from 'src/app/models/product.model';
 import { GetAllStoreBaseService } from 'src/app/common/crud-base-store-services/get-all-store-base.service';
-import { GetAllProductsApiService } from 'src/app/services/product-api/get-all-products-api.service';
+import { GetAllProductsApiService } from 'src/app/api/product-api/get-all-products-api.service';
 
 @Injectable({
   providedIn: 'root',

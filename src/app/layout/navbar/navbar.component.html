@@ -10,9 +10,20 @@
         objectFit="scale-down"
       ></app-img
     ></a>
-    <div>
-      <button class="button-default btn">Login</button>
-      <button class="button-default btn">Create User</button>
+    <div *ngIf="!user.email">
+      <button class="button-default btn" (click)="login()">
+        Login <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
+      </button>
+      <button class="button-default btn" (click)="createUser()">
+        Create User
+        <span *ngIf="this.createUserStoreService.getLoading()">...</span>
+      </button>
+    </div>
+    <div *ngIf="user.email">
+      <p>{{ user.email }}</p>
+      <button (click)="logout()">
+        Logout <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
+      </button>
     </div>
   </div>
 

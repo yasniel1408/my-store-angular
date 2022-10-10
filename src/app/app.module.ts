@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { ProductDetailModalComponent } from './pages/products/components/product
 import { LandingComponent } from './pages/landing/landing.component';
 
 import { SwiperModule } from 'swiper/angular';
+import { TimeInterceptor } from './interceptors/time.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { SwiperModule } from 'swiper/angular';
     LandingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SwiperModule],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true }], //Ejecutamos los interceptores
   bootstrap: [AppComponent],
 })
 export class AppModule {}

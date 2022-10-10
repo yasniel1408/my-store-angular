@@ -1,6 +1,6 @@
 import { IBaseModel } from './base-model.model';
 export interface IUserModel extends IBaseModel {
-  id: string;
+  id: number;
   email: string;
   password: string;
   name: string;
