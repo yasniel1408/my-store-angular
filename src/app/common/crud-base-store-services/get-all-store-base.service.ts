@@ -4,19 +4,13 @@ import { CrudBaseStoreService } from './crud-base-store-service';
 import { IGetAllResourceStoreService } from '../interfaces/get-all-store-service.interface';
 
 export abstract class GetAllStoreBaseService<M extends IBaseModel, S extends GetAllBaseApiService<M>> extends CrudBaseStoreService<S> implements IGetAllResourceStoreService<M> {
-  protected limit: number = 4;
-  protected offset: number = 0;
+  private dataList: M[] = [];
 
-  protected dataList: M[] = [];
-
-  getAll(limit: number, offset: number) {
-    this.limit = limit;
-    this.offset = offset;
+  getAll(limit?: number, offset?: number) {
     this.isLoading = true;
-    return this.baseService.getAll(this.limit, this.offset).subscribe({
+    return this.baseService.getAll(limit, offset).subscribe({
       next: (data: M[]) => {
-        this.dataList = this.dataList.concat(data);
-        this.offset += this.limit;
+        this.dataList = data;
       },
       error: (err: Error) => {
         this.isLoading = false;

@@ -15,6 +15,9 @@ export class CategoryComponent implements OnInit {
 
   public products: IProductModel[] = [];
 
+  protected limit: number = 4;
+  protected offset: number = 0;
+
   constructor(public activatedRoute: ActivatedRoute, public getProductsByCategoryStoreService: GetProductsByCategoryStoreService) {}
 
   ngOnInit(): void {
@@ -26,10 +29,10 @@ export class CategoryComponent implements OnInit {
   }
 
   getDataProductsByCategory() {
-    this.products = [];
-    this.getProductsByCategoryStoreService.getAll(4, 0).add(() => {
+    this.getProductsByCategoryStoreService.getAll(this.limit, this.offset).add(() => {
       const products: IProductModel[] = this.getProductsByCategoryStoreService.getDataList();
-      this.products = products;
+      this.products = this.products.concat(products);
+      this.offset += this.limit;
     });
   }
 }

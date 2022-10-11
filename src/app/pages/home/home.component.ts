@@ -12,8 +12,12 @@ import { DeleteProductsStoreService } from './store/delete-products-store.servic
 })
 export class HomeComponent implements OnInit {
   public products: IProductModel[] = [];
+
   today = new Date();
   date = new Date(2021, 1, 21);
+
+  protected limit: number = 4;
+  protected offset: number = 0;
 
   constructor(
     public getAllProductsStoreService: GetAllProductsStoreService,
@@ -27,8 +31,9 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.getAllProductsStoreService.getAll(4, 0).add(() => {
-      this.products = this.getAllProductsStoreService.getDataList();
+    this.getAllProductsStoreService.getAll(this.limit, this.offset).add(() => {
+      this.products = this.products.concat(this.getAllProductsStoreService.getDataList());
+      this.offset += this.limit;
     });
   }
 

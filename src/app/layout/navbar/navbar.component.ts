@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
-    this.getAllCategoriesStoreService.getAll(100, 0).add(() => {
+    this.getAllCategoriesStoreService.getAll().add(() => {
       this.categories = this.getAllCategoriesStoreService.getDataList();
     });
   }
