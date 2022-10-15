@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { GetAllBaseApiService } from '../common/crud-base-api-service/get-all-base-api.service';
 import { Observable, retry, catchError, map } from 'rxjs';
+import { APiRoutesConstants } from 'src/app/constants/api-routes.constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetAllProductsApiService extends GetAllBaseApiService<IProductModel> {
   constructor(httpClient: HttpClient) {
-    super(httpClient, `products`);
+    super(httpClient, APiRoutesConstants.PRODUCTS_ROUTE);
   }
 
   override getAll(limit?: number, offset?: number): Observable<IProductModel[]> {

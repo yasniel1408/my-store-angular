@@ -5,13 +5,14 @@ import { IUserAccessToken } from 'src/app/models/user.model';
 import { catchError, tap } from 'rxjs';
 import { IUserCredentials } from 'src/app/models/user.model';
 import { TokenProviderService } from '../../providers/token-provider/token-provider.service';
+import { APiRoutesConstants } from 'src/app/constants/api-routes.constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginApiService extends CrudBaseApiService {
   constructor(httpClient: HttpClient, private tokenProviderService: TokenProviderService) {
-    super(httpClient, `auth/login`);
+    super(httpClient, APiRoutesConstants.LOGIN_ROUTE);
   }
 
   login(auth: IUserCredentials) {

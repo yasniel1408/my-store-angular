@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginUserStoreService } from './store/login-user-store.service';
-import { IUserCredentials, IUserModel, ICreateUserModelDTO } from '../../models/user.model';
+import { IUserCredentials, IUserModel, ICreateUserModelDTO } from 'src/app/models/user.model';
 import { CreateUserStoreService } from './store/create-user-store.service';
 import { GetUserProfileStoreService } from './store/get-user-profile-store.service';
 import { LogoutUserStoreService } from './store/logout-user-store.service';
 import { TokenProviderService } from 'src/app/providers/token-provider/token-provider.service';
 import { GetAllCategoriesStoreService } from './store/get-all-categories-store.service';
-import { ICategoryModel } from '../../models/category.model';
+import { ICategoryModel } from 'src/app/models/category.model';
+import { RoutesConstants } from 'src/app/constants/routes.constants';
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +23,8 @@ export class NavbarComponent implements OnInit {
   public categories: ICategoryModel[] = [];
 
   public user: IUserModel = { id: 0, email: '', password: '', name: '' };
+
+  public RoutesConstants = RoutesConstants;
 
   toggleSideBar(): void {
     this.showMenu = !this.showMenu;

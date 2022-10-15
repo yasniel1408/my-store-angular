@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CATEGORY_ID } from 'src/app/constants/params';
+import { ParamsConstants } from 'src/app/constants/params.constants';
 import { GetProductsByCategoryStoreService } from './store/get-products-by-category-store.service';
 import { IProductModel } from 'src/app/models/product.model';
-import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-category',
@@ -22,17 +21,22 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
-      this.categoryId = params.get(CATEGORY_ID);
+      this.offset = 0;
+      this.categoryId = params.get(ParamsConstants.CATEGORY_ID);
       this.getProductsByCategoryStoreService.setParamsApiRoute(this.categoryId);
-      this.getDataProductsByCategory();
+      this.getDataProductsByCategory({ isMore: false });
     });
   }
 
-  getDataProductsByCategory() {
+  getDataProductsByCategory({ isMore }: { isMore: boolean }) {
     this.getProductsByCategoryStoreService.getAll(this.limit, this.offset).add(() => {
       const products: IProductModel[] = this.getProductsByCategoryStoreService.getDataList();
-      this.products = this.products.concat(products);
-      this.offset += this.limit;
+      this.products = isMore ? this.products.concat(products) : products;
+      if (isMore) {
+        this.offset += this.limit;
+      } else {
+        this.offset = this.limit;
+      }
     });
   }
 }

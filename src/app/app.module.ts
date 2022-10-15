@@ -27,6 +27,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HomeComponent } from './pages/home/home.component';
     RecoveryComponent,
     ProfileComponent,
     HomeComponent,
+    ProductComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SwiperModule],
   providers: [

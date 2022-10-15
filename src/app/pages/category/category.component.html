@@ -1,5 +1,5 @@
 <app-products
   [products]="this.products"
   [isLoading]="this.getProductsByCategoryStoreService.getLoading()"
-  (OnMoreData)="getDataProductsByCategory()"
+  (OnMoreData)="getDataProductsByCategory({ isMore: true })"
 ></app-products>

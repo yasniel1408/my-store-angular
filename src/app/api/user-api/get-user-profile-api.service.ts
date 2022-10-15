@@ -3,13 +3,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CrudBaseApiService } from '../common/crud-base-api-service/crud-base-api-service';
 import { catchError } from 'rxjs';
 import { IUserModel } from '../../models/user.model';
+import { APiRoutesConstants } from 'src/app/constants/api-routes.constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetUserProfileApiService extends CrudBaseApiService {
   constructor(httpClient: HttpClient) {
-    super(httpClient, `auth/profile`);
+    super(httpClient, APiRoutesConstants.PROFILE_ROUTE);
   }
 
   profile() {

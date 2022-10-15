@@ -3,7 +3,10 @@
     <button class="openbtn" (click)="toggleSideBar()">☰</button>
   </div>
   <div class="elementes-navbar">
-    <a routerLink="home" class="logo"
+    <a
+      routerLink="{{ RoutesConstants.HOME_ROUTE }}"
+      routerLinkActive="active"
+      class="logo"
       ><app-img
         imgUrl="{{ imgParent }}"
         height="30"
@@ -40,6 +43,7 @@
       *ngFor="let item of categories"
       [routerLink]="['category', item.id]"
       (click)="toggleSideBar()"
+      routerLinkActive="active"
       >{{ item.name }}</a
     >
   </div>

@@ -13,13 +13,17 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    button {
-      background: #022951;
-      border: none;
-      color: white;
-      padding: 10px;
-      border-radius: 10px;
-      cursor: pointer;
+    span {
+      margin-top: 7px;
     }
   }
+}
+button {
+  background: #022951;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 5px;
 }
