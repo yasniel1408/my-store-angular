@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { MyCartComponent } from './pages/mycart/mycart.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { RecoveryComponent } from './pages/recovery/recovery.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProductComponent } from './pages/product/product.component';
-import { RoutesConstants } from './constants/routes.constants';
-import { ParamsConstants } from './constants/params.constants';
+import { NotFoundComponent } from './common/pages/not-found/not-found.component';
+import { CategoryComponent } from './products/pages/category/category.component';
+import { MyCartComponent } from './cart/pages/mycart/mycart.component';
+import { LoginComponent } from './auth/pages/login/login.component';
+import { RegisterComponent } from './auth/pages/register/register.component';
+import { RecoveryComponent } from './common/pages/recovery/recovery.component';
+import { ProfileComponent } from './user/pages/profile/profile.component';
+import { HomeComponent } from './home/pages/home/home.component';
+import { ProductComponent } from './products/pages/product/product.component';
+import { RoutesConstants } from './shared/constants/routes.constants';
+import { ParamsConstants } from './shared/constants/params.constants';
 
 const routes: Routes = [
   {

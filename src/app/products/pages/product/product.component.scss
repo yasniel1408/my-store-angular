@@ -1,0 +1,33 @@
+.product-container {
+  padding: 0px 10px 30px 10px;
+  h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+  }
+  h2 {
+    padding: 0;
+    margin: 2px 0px;
+  }
+  p {
+    font-size: 10px;
+    margin: 12px 0px;
+    font-weight: 900;
+  }
+}
+
+.buttons-page {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  button {
+    background: #022951;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+}

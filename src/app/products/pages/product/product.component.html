@@ -1,0 +1,19 @@
+<div *ngIf="getByIdProductsStoreService.getLoading()">LOADING...</div>
+<div
+  *ngIf="!getByIdProductsStoreService.getLoading()"
+  class="product-container"
+>
+  <h1>{{ product.title }}</h1>
+  <swiper [slidesPerView]="1" [navigation]="true">
+    <ng-template swiperSlide *ngFor="let img of product.images"
+      ><app-img imgUrl="{{ img }}" height="400"></app-img
+    ></ng-template>
+  </swiper>
+  <h2>Category: {{ product.category.name }}</h2>
+  <p>{{ product.description }}</p>
+  <h2>Price: {{ product.price }}</h2>
+</div>
+<div class="buttons-page">
+  <button (click)="addProductToCart()">Add to Cart</button>
+  <button (click)="goToBack()">Go to Back</button>
+</div>

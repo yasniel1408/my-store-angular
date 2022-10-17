@@ -4,30 +4,30 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ImgComponent } from './components/img/img.component';
-import { ProductCardComponent } from './components/products/components/product-card/product-card.component';
-import { ProductsComponent } from './components/products/products.component';
-import { NavbarComponent } from './layout/navbar/navbar.component';
-import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
-import { ReversePipe } from './pipes/reverse.pipe';
-import { TimeAgoPipe } from './pipes/time-ago.pipe';
-import { HighlightDirective } from './directives/highlight.directive';
-import { CartComponent } from './components/cart/cart.component';
-import { ProductDetailModalComponent } from './components/products/components/product-detail-modal/product-detail-modal.component';
+import { ImgComponent } from './shared/components/img/img.component';
+import { ProductCardComponent } from './shared/components/products/components/product-card/product-card.component';
+import { ProductsComponent } from './shared/components/products/products.component';
+import { NavbarComponent } from './layout/components/navbar/navbar.component';
+import { CustomCurrencyPipe } from './shared/pipes/custom-currency.pipe';
+import { ReversePipe } from './shared/pipes/reverse.pipe';
+import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
+import { HighlightDirective } from './shared/directives/highlight.directive';
+import { CartComponent } from './shared/components/cart/cart.component';
+import { ProductDetailModalComponent } from './shared/components/products/components/product-detail-modal/product-detail-modal.component';
 
 import { SwiperModule } from 'swiper/angular';
-import { TimeInterceptor } from './interceptors/time.interceptor';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { TimeInterceptor } from './shared/interceptors/time.interceptor';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { MyCartComponent } from './pages/mycart/mycart.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { RecoveryComponent } from './pages/recovery/recovery.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProductComponent } from './pages/product/product.component';
+import { NotFoundComponent } from './common/pages/not-found/not-found.component';
+import { CategoryComponent } from './products/pages/category/category.component';
+import { MyCartComponent } from './cart/pages/mycart/mycart.component';
+import { LoginComponent } from './auth/pages/login/login.component';
+import { RegisterComponent } from './auth/pages/register/register.component';
+import { RecoveryComponent } from './common/pages/recovery/recovery.component';
+import { ProfileComponent } from './user/pages/profile/profile.component';
+import { HomeComponent } from './home/pages/home/home.component';
+import { ProductComponent } from './products/pages/product/product.component';
 
 @NgModule({
   declarations: [

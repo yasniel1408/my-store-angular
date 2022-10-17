@@ -1,0 +1,47 @@
+<header class="header">
+  <div id="main">
+    <button class="openbtn" (click)="toggleSideBar()">☰</button>
+  </div>
+  <div class="elementes-navbar">
+    <a routerLink="{{ RoutesConstants.HOME_ROUTE }}" class="logo"
+      ><app-img
+        imgUrl="{{ imgParent }}"
+        height="30"
+        objectFit="scale-down"
+      ></app-img
+    ></a>
+    <div *ngIf="!user.email">
+      <button class="button-default btn" (click)="login()">
+        Login <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
+      </button>
+      <button class="button-default btn" (click)="createUser()">
+        Create User
+        <span *ngIf="this.createUserStoreService.getLoading()">...</span>
+      </button>
+    </div>
+    <div *ngIf="user.email">
+      <p>{{ user.email }}</p>
+      <button (click)="logout()">
+        Logout <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mySidebar"
+    class="sidebar"
+    [ngClass]="this.showMenu ? 'showMenu' : ''"
+  >
+    <a href="javascript:void(0)" class="closebtn" (click)="toggleSideBar()"
+      >×</a
+    >
+    <a routerLink="home" (click)="toggleSideBar()">Home</a>
+    <a
+      *ngFor="let item of categories"
+      [routerLink]="['category', item.id]"
+      (click)="toggleSideBar()"
+      routerLinkActive="active"
+      >{{ item.name }}</a
+    >
+  </div>
+</header>

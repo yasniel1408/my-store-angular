@@ -1,0 +1,22 @@
+<div class="product-container">
+  <p>{{ product.title }}</p>
+  <!-- Pasar parametros opcionarles como query params -->
+  <a routerLink="." [queryParams]="{ id: product.id }">
+    <app-img
+      *ngIf="product.images.length > 0"
+      imgUrl="{{ product.images[0] }}"
+    ></app-img>
+  </a>
+
+  <p appHighlight>{{ product.description }}</p>
+  <div class="info-product">
+    <div>
+      <h2>{{ product.price | currency: "USD" }}</h2>
+    </div>
+    <span *ngIf="product.taxes" appHighlight
+      >Taxes: {{ product.taxes | currency: "USD" }}</span
+    >
+  </div>
+  <button (click)="addProductToCart(product)">Add to Cart</button>
+  <a routerLink="{{ goToProductRoute }}"><button>Detail</button></a>
+</div>
