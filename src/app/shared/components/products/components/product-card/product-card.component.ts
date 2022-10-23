@@ -28,7 +28,7 @@ export class ProductCardComponent implements OnInit {
   constructor(public currentProductStoreService: CurrentProductStoreService, public cartProviderService: CartProviderService) {}
 
   ngOnInit(): void {
-    this.goToProductRoute = `/${RoutesConstants.PRODUCT_ROUTE}/${this.product.id}`;
+    this.goToProductRoute = `/${RoutesConstants.PRODUCTS_ROUTE}/${this.product.id}`;
   }
 
   addProductToCart(p: IProductModel): void {

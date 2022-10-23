@@ -39,7 +39,7 @@ export class ProductDetailModalComponent implements OnInit, OnDestroy {
           this.isShowModal = true;
           this.getByIdProductsStoreService.getById(productId).add(() => {
             this.product = this.getByIdProductsStoreService.getResource();
-            this.goToProductRoute = `/${RoutesConstants.PRODUCT_ROUTE}/${this.product.id}`;
+            this.goToProductRoute = `/${RoutesConstants.PRODUCTS_ROUTE}/${this.product.id}`;
           });
         }
       },

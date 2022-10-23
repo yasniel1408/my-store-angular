@@ -8,6 +8,7 @@ import { TokenProviderService } from 'src/app/shared/providers/token-provider/to
 import { GetAllCategoriesStoreService } from './store/get-all-categories-store.service';
 import { ICategoryModel } from 'src/app/shared/models/category.model';
 import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
+import { CartProviderService } from 'src/app/shared/providers/cart-provider/cart-provider.service';
 
 @Component({
   selector: 'app-navbar',
@@ -26,6 +27,8 @@ export class NavbarComponent implements OnInit {
 
   public RoutesConstants = RoutesConstants;
 
+  public cantProductsInCart: number = 0;
+
   toggleSideBar(): void {
     this.showMenu = !this.showMenu;
   }
@@ -36,13 +39,18 @@ export class NavbarComponent implements OnInit {
     public getUserProfileStoreService: GetUserProfileStoreService,
     public logoutUserStoreService: LogoutUserStoreService,
     public tokenProviderService: TokenProviderService,
-    public getAllCategoriesStoreService: GetAllCategoriesStoreService
+    public getAllCategoriesStoreService: GetAllCategoriesStoreService,
+    public cartProviderService: CartProviderService
   ) {}
 
   ngOnInit(): void {
     this.getUserProfile();
     this.getAllCategoriesStoreService.getAll().add(() => {
       this.categories = this.getAllCategoriesStoreService.getDataList();
+    });
+
+    this.cartProviderService.myCart$.subscribe((products) => {
+      this.cantProductsInCart = products.length;
     });
   }
 

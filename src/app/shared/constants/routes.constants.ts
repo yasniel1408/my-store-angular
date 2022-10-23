@@ -1,5 +1,6 @@
 export enum RoutesConstants {
   HOME_ROUTE = 'home',
+  PRODUCTS_ROUTE = 'products',
   PRODUCT_ROUTE = 'product',
   CATEGORY_ROUTE = 'category',
   CART_ROUTE = 'cart',

@@ -4,7 +4,7 @@
   class="product-container"
 >
   <h1>{{ product.title }}</h1>
-  <swiper [slidesPerView]="1" [navigation]="true">
+  <swiper [slidesPerView]="3" [navigation]="true">
     <ng-template swiperSlide *ngFor="let img of product.images"
       ><app-img imgUrl="{{ img }}" height="400"></app-img
     ></ng-template>

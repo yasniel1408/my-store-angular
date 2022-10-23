@@ -3,12 +3,15 @@
   z-index: 1;
   background: rgb(228, 228, 228);
   border-radius: 15px;
-  width: 400px;
+  width: 50%;
   height: 80vh;
   top: 10vh;
   padding: 15px;
-  max-width: 500px;
-  margin: 0 40px !important;
+  margin: 0 25% !important;
+  @media (max-width: 900px) {
+    width: 90%;
+    margin: 0 2% !important;
+  }
   span {
     position: absolute;
     right: 0;

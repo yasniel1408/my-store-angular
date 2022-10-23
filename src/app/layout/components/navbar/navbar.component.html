@@ -6,10 +6,11 @@
     <a routerLink="{{ RoutesConstants.HOME_ROUTE }}" class="logo"
       ><app-img
         imgUrl="{{ imgParent }}"
-        height="30"
+        height="35"
         objectFit="scale-down"
       ></app-img
     ></a>
+
     <div *ngIf="!user.email">
       <button class="button-default btn" (click)="login()">
         Login <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
@@ -27,6 +28,10 @@
     </div>
   </div>
 
+  <a class="button-default btn" routerLinkActive="active" routerLink="cart">
+    Cart <span>{{ cantProductsInCart }}</span>
+  </a>
+
   <div
     id="mySidebar"
     class="sidebar"
@@ -35,10 +40,16 @@
     <a href="javascript:void(0)" class="closebtn" (click)="toggleSideBar()"
       >×</a
     >
-    <a routerLink="home" (click)="toggleSideBar()">Home</a>
+    <a routerLinkActive="active" routerLink="home" (click)="toggleSideBar()"
+      >Home</a
+    >
     <a
       *ngFor="let item of categories"
-      [routerLink]="['category', item.id]"
+      [routerLink]="[
+        RoutesConstants.PRODUCTS_ROUTE,
+        RoutesConstants.CATEGORY_ROUTE,
+        item.id
+      ]"
       (click)="toggleSideBar()"
       routerLinkActive="active"
       >{{ item.name }}</a

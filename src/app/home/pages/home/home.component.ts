@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   today = new Date();
   date = new Date(2021, 1, 21);
 
-  protected limit: number = 4;
+  protected limit: number = 9;
   protected offset: number = 0;
 
   constructor(
