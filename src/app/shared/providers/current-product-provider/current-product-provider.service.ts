@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CurrentProductStoreService {
+export class CurrentProductProviderService {
   //programacion reactiva
   private currentProductSelected = new BehaviorSubject<number>(0);
   currentProductSelected$ = this.currentProductSelected.asObservable();

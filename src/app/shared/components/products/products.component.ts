@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProductModel } from 'src/app/shared/models/product.model';
-import { CurrentProductStoreService } from 'src/app/shared/providers/product/current-product-store.service';
+import { CurrentProductProviderService } from 'src/app/shared/providers/current-product-provider/current-product-provider.service';
 
 @Component({
   selector: 'app-products',
@@ -20,12 +20,12 @@ export class ProductsComponent implements OnInit {
 
   @Output() OnMoreData = new EventEmitter();
 
-  constructor(public activatedRoute: ActivatedRoute, public currentProductStoreService: CurrentProductStoreService) {}
+  constructor(public activatedRoute: ActivatedRoute, public currentProductProviderService: CurrentProductProviderService) {}
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.productIdModalActive = params.get('id');
-      if (!!this.productIdModalActive) this.currentProductStoreService.selectedProduct(Number(this.productIdModalActive));
+      if (!!this.productIdModalActive) this.currentProductProviderService.selectedProduct(Number(this.productIdModalActive));
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProductModel } from 'src/app/shared/models/product.model';
-import { CurrentProductStoreService } from 'src/app/shared/providers/product/current-product-store.service';
+import { CurrentProductProviderService } from 'src/app/shared/providers/current-product-provider/current-product-provider.service';
 import { CartProviderService } from 'src/app/shared/providers/cart-provider/cart-provider.service';
 import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
 
@@ -25,7 +25,7 @@ export class ProductCardComponent implements OnInit {
 
   public goToProductRoute = '';
 
-  constructor(public currentProductStoreService: CurrentProductStoreService, public cartProviderService: CartProviderService) {}
+  constructor(public currentProductProviderService: CurrentProductProviderService, public cartProviderService: CartProviderService) {}
 
   ngOnInit(): void {
     this.goToProductRoute = `/${RoutesConstants.PRODUCTS_ROUTE}/${this.product.id}`;
@@ -36,6 +36,6 @@ export class ProductCardComponent implements OnInit {
   }
 
   onSelectedProduct(productId: number) {
-    this.currentProductStoreService.selectedProduct(productId);
+    this.currentProductProviderService.selectedProduct(productId);
   }
 }

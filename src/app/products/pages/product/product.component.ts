@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ParamsConstants } from 'src/app/shared/constants/params.constants';
 import { IProductModel } from 'src/app/shared/models/product.model';
 import { CartProviderService } from 'src/app/shared/providers/cart-provider/cart-provider.service';
-import { GetByIdProductsStoreService } from 'src/app/shared/providers/product/get-by-id-products-store.service';
+import { GetByIdProductsStoreService } from './store/get-by-id-products-store.service';
 import { Location } from '@angular/common';
 
 @Component({
