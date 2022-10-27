@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
 import { ParamsConstants } from '../shared/constants/params.constants';
-import { CategoryComponent } from './pages/category/category.component';
-import { ProductComponent } from './pages/product/product.component';
-import { ProductsComponent } from './pages/products/products.component';
 
 const routes: Routes = [
   {
@@ -18,15 +15,18 @@ const routes: Routes = [
       },
       {
         path: RoutesConstants.HOME_ROUTE,
-        component: ProductsComponent,
+        loadChildren: () => import('./pages/products/products.module').then((m) => m.ProductsModule),
+        data: { preload: true },
       },
       {
         path: `${RoutesConstants.PRODUCT_ROUTE}:${ParamsConstants.PRODUCT_ID}`,
-        component: ProductComponent,
+        loadChildren: () => import('./pages/product/product.module').then((m) => m.ProductModule),
+        data: { preload: true },
       },
       {
-        path: `${RoutesConstants.CATEGORY_ROUTE}/:${ParamsConstants.CATEGORY_ID}`,
-        component: CategoryComponent,
+        path: `${RoutesConstants.PRODUCTS_ROUTE}/${RoutesConstants.CATEGORY_ROUTE}/:${ParamsConstants.CATEGORY_ID}`,
+        loadChildren: () => import('./pages/category/category.module').then((m) => m.CategoryModule),
+        data: { preload: true },
       },
     ],
   },

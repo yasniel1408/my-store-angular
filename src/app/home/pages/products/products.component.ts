@@ -6,7 +6,7 @@ import { UpdateProductsStoreService } from './store/update-products-store.servic
 import { DeleteProductsStoreService } from './store/delete-products-store.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
