@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PublicLayoutComponent } from './layout/components/public-layout/public-layout.component';
 import { NotFoundComponent } from 'src/app/shared/pages/not-found/not-found.component';
 import { RoutesConstants } from './shared/constants/routes.constants';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 
 const routes: Routes = [
   {
@@ -14,11 +15,6 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
         data: { preload: true }, //esto es para la precarga junto con lo que esta en el import ngModule
-      },
-      {
-        path: `${RoutesConstants.PRODUCTS_ROUTE}`,
-        loadChildren: () => import('./products/products.module').then((m) => m.ProductsModule),
-        data: { preload: true },
       },
       {
         path: RoutesConstants.CART_ROUTE,
@@ -50,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: QuicklinkStrategy })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

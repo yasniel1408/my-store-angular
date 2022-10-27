@@ -1,6 +1,6 @@
 import { GetAllStoreBaseService } from 'src/app/shared/store/crud-base-store-services/get-all-store-base.service';
 import { IProductModel } from 'src/app/shared/models/product.model';
-import { GetProductsByCategoryApiService } from 'src/app/products/api/get-products-by-category-api.service';
+import { GetProductsByCategoryApiService } from 'src/app/home/pages/category/api/get-products-by-category-api.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CreateStoreBaseService } from 'src/app/shared/store/crud-base-store-services/create-store-base.service';
 import { IUserModel, ICreateUserModelDTO } from 'src/app/shared/models/user.model';
-import { CreateUsersApiService } from 'src/app/user/api/create-user-api.service';
+import { CreateUsersApiService } from 'src/app/layout/api/create-user-api.service';
 
 @Injectable({
   providedIn: 'root',

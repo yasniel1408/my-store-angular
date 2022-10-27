@@ -3,7 +3,7 @@ import { catchError, Observable, retry } from 'rxjs';
 import { CrudBaseApiService } from './crud-base-api-service';
 import { IGetByIdResourceApiService } from '../interfaces/get-by-id-api-service.interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { checkTime } from 'src/app/shared/interceptors/time.interceptor';
+import { checkTime } from 'src/app/shared/interceptors/time-interceptor/time.interceptor';
 
 export class GetByIdBaseApiService<M extends IBaseModel> extends CrudBaseApiService implements IGetByIdResourceApiService<M> {
   getById(id: number): Observable<M> {

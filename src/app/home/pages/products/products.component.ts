@@ -7,10 +7,10 @@ import { DeleteProductsStoreService } from './store/delete-products-store.servic
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   public products: IProductModel[] = [];
 
   today = new Date();

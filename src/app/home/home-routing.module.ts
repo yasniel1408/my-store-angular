@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
-import { HomeComponent } from './pages/home/home.component';
+import { ParamsConstants } from '../shared/constants/params.constants';
+import { CategoryComponent } from './pages/category/category.component';
+import { ProductComponent } from './pages/product/product.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 const routes: Routes = [
   {
@@ -15,7 +18,15 @@ const routes: Routes = [
       },
       {
         path: RoutesConstants.HOME_ROUTE,
-        component: HomeComponent,
+        component: ProductsComponent,
+      },
+      {
+        path: `${RoutesConstants.PRODUCT_ROUTE}:${ParamsConstants.PRODUCT_ID}`,
+        component: ProductComponent,
+      },
+      {
+        path: `${RoutesConstants.CATEGORY_ROUTE}/:${ParamsConstants.CATEGORY_ID}`,
+        component: CategoryComponent,
       },
     ],
   },

@@ -6,10 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LayoutModule } from './layout/layout.module';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, LayoutModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, LayoutModule, QuicklinkModule],
   providers: [], //Ejecutamos los interceptores
   bootstrap: [AppComponent],
 })
