@@ -1,4 +1,8 @@
-<div class="modal-container" [ngClass]="isShowModal ? '' : 'hidden'">
+<div
+  class="modal-container"
+  [ngClass]="isShowModal ? '' : 'hidden'"
+  *ngIf="!!product"
+>
   <div *ngIf="!this.getByIdProductsStoreService.getLoading()">
     <span (click)="hideModal()">X</span>
     <h1>{{ product.title }}</h1>

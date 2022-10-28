@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUserStoreService } from './store/login-user-store.service';
-import { IUserCredentials, IUserModel, ICreateUserModelDTO } from 'src/app/shared/models/user.model';
-import { CreateUserStoreService } from './store/create-user-store.service';
-import { GetUserProfileStoreService } from './store/get-user-profile-store.service';
+import { IUserModel } from 'src/app/shared/models/user.model';
 import { LogoutUserStoreService } from './store/logout-user-store.service';
 import { TokenProviderService } from 'src/app/shared/providers/token-provider/token-provider.service';
 import { GetAllCategoriesStoreService } from './store/get-all-categories-store.service';
 import { ICategoryModel } from 'src/app/shared/models/category.model';
 import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
 import { CartProviderService } from 'src/app/shared/providers/cart-provider/cart-provider.service';
+import { UserProfileProviderService } from 'src/app/shared/providers/user-profile-provider/user-profile-provider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   public categories: ICategoryModel[] = [];
 
-  public user: IUserModel = { id: 0, email: '', password: '', name: '' };
+  public user: IUserModel | null = null;
 
   public RoutesConstants = RoutesConstants;
 
@@ -34,13 +33,12 @@ export class NavbarComponent implements OnInit {
   }
 
   constructor(
-    public loginUserStoreService: LoginUserStoreService,
-    public createUserStoreService: CreateUserStoreService,
-    public getUserProfileStoreService: GetUserProfileStoreService,
     public logoutUserStoreService: LogoutUserStoreService,
     public tokenProviderService: TokenProviderService,
     public getAllCategoriesStoreService: GetAllCategoriesStoreService,
-    public cartProviderService: CartProviderService
+    public cartProviderService: CartProviderService,
+    public userProfileProviderService: UserProfileProviderService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -54,27 +52,28 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  login() {
-    const auth: IUserCredentials = { email: 'yasniel1@gmail.com', password: 'yasniel1' };
-    this.loginUserStoreService.login(auth).add(() => {
-      this.getUserProfile();
-    });
+  goToLogin() {
+    this.router.navigateByUrl(`${RoutesConstants.AUTH_ROUTE}/${RoutesConstants.LOGIN_ROUTE}`);
   }
 
-  createUser() {
-    const user: ICreateUserModelDTO = { email: 'yasniel1@gmail.com', password: 'yasniel1', name: 'Yasniel Fajardo Egues1' };
-    this.createUserStoreService.create(user);
+  goToRegister() {
+    this.router.navigateByUrl(`${RoutesConstants.AUTH_ROUTE}/${RoutesConstants.REGISTER_ROUTE}`);
   }
 
   getUserProfile() {
-    this.tokenProviderService.existToken() &&
-      this.getUserProfileStoreService.profile().add(() => {
-        this.user = this.getUserProfileStoreService.getProfile();
+    if (this.tokenProviderService.existToken()) {
+      this.userProfileProviderService.getProfile().add(() => {
+        this.userProfileProviderService.user$.subscribe((user) => {
+          this.user = user;
+        });
       });
+    }
   }
 
   logout() {
     this.logoutUserStoreService.logout();
-    this.user = { id: 0, email: '', password: '', name: '' };
+    this.userProfileProviderService.logout();
+    this.user = null;
+    this.router.navigateByUrl(RoutesConstants.HOME_ROUTE);
   }
 }

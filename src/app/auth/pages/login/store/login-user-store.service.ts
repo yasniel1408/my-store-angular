@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CrudBaseStoreService } from 'src/app/shared/store/crud-base-store-services/crud-base-store-service';
+import { CrudBaseStoreService } from 'src/app/shared/providers/crud-base-store-services/crud-base-store-service';
 import { IUserAccessToken } from 'src/app/shared/models/user.model';
 import { IUserCredentials } from 'src/app/shared/models/user.model';
-import { LoginApiService } from 'src/app/layout/api/login-user-api.service';
+import { LoginApiService } from 'src/app/auth/api/login-user-api.service';
 
 @Injectable({
   providedIn: 'root',

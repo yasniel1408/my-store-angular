@@ -1,4 +1,4 @@
-<div class="product-container">
+<div class="product-container" *ngIf="!!product">
   <p>{{ product.title }}</p>
   <!-- Pasar parametros opcionarles como query params -->
   <a routerLink="." [queryParams]="{ id: product.id }">
@@ -20,3 +20,5 @@
   <button (click)="addProductToCart(product)">Add to Cart</button>
   <a routerLink="{{ goToProductRoute }}"><button>Detail</button></a>
 </div>
+
+<div *ngIf="!product">LOADING!!!!!</div>

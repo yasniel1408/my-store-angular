@@ -16,17 +16,14 @@ const routes: Routes = [
       {
         path: RoutesConstants.HOME_ROUTE,
         loadChildren: () => import('./pages/products/products.module').then((m) => m.ProductsModule),
-        data: { preload: true },
       },
       {
-        path: `${RoutesConstants.PRODUCT_ROUTE}:${ParamsConstants.PRODUCT_ID}`,
+        path: `${RoutesConstants.PRODUCTS_ROUTE}/:${ParamsConstants.PRODUCT_ID}`,
         loadChildren: () => import('./pages/product/product.module').then((m) => m.ProductModule),
-        data: { preload: true },
       },
       {
         path: `${RoutesConstants.PRODUCTS_ROUTE}/${RoutesConstants.CATEGORY_ROUTE}/:${ParamsConstants.CATEGORY_ID}`,
         loadChildren: () => import('./pages/category/category.module').then((m) => m.CategoryModule),
-        data: { preload: true },
       },
     ],
   },

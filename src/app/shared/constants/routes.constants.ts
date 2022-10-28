@@ -6,6 +6,7 @@ export enum RoutesConstants {
   CART_ROUTE = 'cart',
   LOGIN_ROUTE = 'login',
   REGISTER_ROUTE = 'register',
+  AUTH_ROUTE = 'auth',
   RECOVERY_ROUTE = 'recovery',
   PROFILE_ROUTE = 'profile',
 }

@@ -10,25 +10,14 @@ import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product: IProductModel = {
-    id: 0,
-    title: 'Nombre de ejemplo',
-    images: [],
-    description: '',
-    category: {
-      id: 0,
-      name: '',
-    },
-    price: 456,
-    taxes: 456,
-  };
+  @Input() product: IProductModel | null = null;
 
   public goToProductRoute = '';
 
   constructor(public currentProductProviderService: CurrentProductProviderService, public cartProviderService: CartProviderService) {}
 
   ngOnInit(): void {
-    this.goToProductRoute = `/${RoutesConstants.PRODUCTS_ROUTE}/${this.product.id}`;
+    this.goToProductRoute = `/${RoutesConstants.PRODUCTS_ROUTE}/${!!this.product && this.product.id}`;
   }
 
   addProductToCart(p: IProductModel): void {

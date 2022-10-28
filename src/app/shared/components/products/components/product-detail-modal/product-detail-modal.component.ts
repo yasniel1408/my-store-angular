@@ -11,17 +11,7 @@ import { RoutesConstants } from 'src/app/shared/constants/routes.constants';
   styleUrls: ['./product-detail-modal.component.scss'],
 })
 export class ProductDetailModalComponent implements OnInit, OnDestroy {
-  public product: IProductModel = {
-    id: 0,
-    title: 'Nombre de ejemplo',
-    images: [],
-    description: '',
-    category: {
-      id: 0,
-      name: '',
-    },
-    price: 456,
-  };
+  public product: IProductModel | null = null;
   public isShowModal: boolean = false;
 
   public goToProductRoute = '';
@@ -62,7 +52,7 @@ export class ProductDetailModalComponent implements OnInit, OnDestroy {
   }
 
   addProductToCart(): void {
-    this.cartProviderService.addProductToCart(this.product);
+    !!this.product && this.cartProviderService.addProductToCart(this.product);
   }
 
   hideModal() {

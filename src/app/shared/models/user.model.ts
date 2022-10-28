@@ -4,6 +4,7 @@ export interface IUserModel extends IBaseModel {
   email: string;
   password: string;
   name: string;
+  role?: Role;
 }
 
 export interface ICreateUserModelDTO extends Omit<IUserModel, 'id'> {}
@@ -16,4 +17,9 @@ export interface IUserCredentials {
 }
 export interface IUserAccessToken {
   access_token: string;
+}
+
+export enum Role {
+  CUSTOMER = 'customer',
+  ADMIN = 'admin',
 }

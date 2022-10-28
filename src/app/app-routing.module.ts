@@ -5,6 +5,7 @@ import { PublicLayoutComponent } from './layout/components/public-layout/public-
 import { NotFoundComponent } from 'src/app/shared/pages/not-found/not-found.component';
 import { RoutesConstants } from './shared/constants/routes.constants';
 import { QuicklinkStrategy } from 'ngx-quicklink';
+import { AuthGuard } from './shared/guards/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,29 +15,24 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-        data: { preload: true }, //esto es para la precarga junto con lo que esta en el import ngModule
       },
       {
         path: RoutesConstants.CART_ROUTE,
         loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
-        data: { preload: true },
       },
-      // {
-      //   path: RoutesConstants.LOGIN_ROUTE,
-      //   component: LoginComponent,
-      // },
-      // {
-      //   path: RoutesConstants.REGISTER_ROUTE,
-      //   component: RegisterComponent,
-      // },
+      {
+        path: RoutesConstants.AUTH_ROUTE,
+        loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+      },
       // {
       //   path: RoutesConstants.RECOVERY_ROUTE,
       //   component: RecoveryComponent,
       // },
-      // {
-      //   path: RoutesConstants.PROFILE_ROUTE,
-      //   component: ProfileComponent,
-      // },
+      {
+        path: RoutesConstants.PROFILE_ROUTE,
+        loadChildren: () => import('./users/user.module').then((m) => m.UserModule),
+        canActivate: [AuthGuard],
+      },
       {
         path: '**',
         component: NotFoundComponent,

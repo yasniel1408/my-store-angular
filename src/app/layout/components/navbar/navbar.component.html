@@ -11,26 +11,32 @@
       ></app-img
     ></a>
 
-    <div *ngIf="!user.email">
-      <button class="button-default btn" (click)="login()">
-        Login <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
-      </button>
-      <button class="button-default btn" (click)="createUser()">
-        Create User
-        <span *ngIf="this.createUserStoreService.getLoading()">...</span>
+    <a
+      class="cart-button"
+      routerLinkActive="active"
+      [routerLink]="RoutesConstants.CART_ROUTE"
+    >
+      Cart <span>{{ cantProductsInCart }}</span>
+    </a>
+
+    <div *ngIf="!user">
+      <button class="button-default btn" (click)="goToLogin()">Login</button>
+      <button class="button-default btn" (click)="goToRegister()">
+        Register
       </button>
     </div>
-    <div *ngIf="user.email">
-      <p>{{ user.email }}</p>
-      <button (click)="logout()">
-        Logout <span *ngIf="this.loginUserStoreService.getLoading()">...</span>
-      </button>
+    <div *ngIf="user">
+      <p class="email-user">{{ user.email }}</p>
+      <a class="button-default btn" (click)="logout()"> Logout </a>
+      <a
+        class="button-default btn"
+        routerLinkActive="active"
+        [routerLink]="RoutesConstants.PROFILE_ROUTE"
+      >
+        Profile
+      </a>
     </div>
   </div>
-
-  <a class="button-default btn" routerLinkActive="active" routerLink="cart">
-    Cart <span>{{ cantProductsInCart }}</span>
-  </a>
 
   <div
     id="mySidebar"
@@ -40,7 +46,10 @@
     <a href="javascript:void(0)" class="closebtn" (click)="toggleSideBar()"
       >×</a
     >
-    <a routerLinkActive="active" routerLink="home" (click)="toggleSideBar()"
+    <a
+      routerLinkActive="active"
+      [routerLink]="RoutesConstants.HOME_ROUTE"
+      (click)="toggleSideBar()"
       >Home</a
     >
     <a

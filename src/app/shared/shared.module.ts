@@ -16,6 +16,7 @@ import { ReversePipe } from './pipes/reverse-pipe/reverse.pipe';
 import { TimeAgoPipe } from './pipes/time-ago/time-ago.pipe';
 import { HighlightDirective } from './directives/highlight-directive/highlight.directive';
 import { TokenInterceptor } from './interceptors/token-interceptor/token.interceptor';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [
@@ -31,11 +32,11 @@ import { TokenInterceptor } from './interceptors/token-interceptor/token.interce
     RecoveryComponent,
     GlobalLoadingComponent,
   ],
-  exports: [ImgComponent, ProductsComponent],
+  exports: [ImgComponent, ProductsComponent, QuicklinkModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ], //Ejecutamos los interceptores
-  imports: [CommonModule, RouterModule, SwiperModule],
+  imports: [CommonModule, RouterModule, SwiperModule, QuicklinkModule],
 })
 export class SharedModule {}
